@@ -1,7 +1,12 @@
 # datacite-rest-client-parent
 
-This library provides a simple implementation of a Java client for the REST Datacite API.
-Initially it provides the basic DOI operations described [here](https://support.datacite.org/reference/dois-2) to perform CRUD and query operations on DOIs.
+This library provides a simple implmentation of a Java client for the REST Datacite API.
+Initially it will provide the basic DOI operations described [here](https://support.datacite.org/reference/dois-2) to perform CRUD and query operations on DOIs.
+
+# References
+ - Datacite REST API Guide: [https://support.datacite.org/docs/api](https://support.datacite.org/docs/api) and [https://support.datacite.org/reference](https://support.datacite.org/reference).
+ - Datacite supported metadata schemas: [https://schema.datacite.org/](https://schema.datacite.org/) and Github repo [https://github.com/datacite/schema](https://github.com/datacite/schema).
+ - Datacite testing guide: [https://support.datacite.org/docs/testing-guide](https://support.datacite.org/docs/testing-guide)
  
 ## Modules
  Consists of two modules:
