@@ -1,0 +1,54 @@
+{
+  "data": {
+    "id": "10.21373/110",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.21373/110",
+      "prefix": "10.21373",
+      "suffix": "110",
+      "identifiers": null,
+      "creators": null,
+      "titles": null,
+      "publisher": null,
+      "container": null,
+      "publicationYear": null,
+      "subjects": null,
+      "contributors": null,
+      "dates": null,
+      "language": null,
+      "types": null,
+      "relatedIdentifiers": null,
+      "sizes": null,
+      "formats": null,
+      "version": null,
+      "rightsList": null,
+      "descriptions": null,
+      "geoLocations": null,
+      "fundingReferences": null,
+      "xml": null,
+      "url": null,
+      "contentUrl": null,
+      "metadataVersion": 0,
+      "schemaVersion": null,
+      "source": null,
+      "isActive": false,
+      "state": "draft",
+      "reason": null,
+      "landingPage": null,
+      "created": "2019-04-04T13:02:20.000Z",
+      "registered": null,
+      "updated": "2019-04-04T13:02:20.000Z"
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "id": "gbif.gbif",
+          "type": "clients"
+        }
+      },
+      "media": {
+        "data": []
+      }
+    }
+  }
+}

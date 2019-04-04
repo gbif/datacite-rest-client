@@ -6,3 +6,4 @@ target/
 # Package Files #
 *.jar
 *.war
+/datacite-rest-client/src/main/java-generated/
