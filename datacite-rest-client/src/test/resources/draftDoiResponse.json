@@ -1,0 +1,90 @@
+{
+  "data": {
+    "id": "10.21373/110",
+    "type": "dois",
+    "attributes": {
+      "doi": "10.21373/110",
+      "prefix": "10.21373",
+      "suffix": "110",
+      "identifiers": null,
+      "creators": null,
+      "titles": null,
+      "publisher": null,
+      "container": null,
+      "publicationYear": null,
+      "subjects": null,
+      "contributors": null,
+      "dates": null,
+      "language": null,
+      "types": null,
+      "relatedIdentifiers": null,
+      "sizes": null,
+      "formats": null,
+      "version": null,
+      "rightsList": null,
+      "descriptions": null,
+      "geoLocations": null,
+      "fundingReferences": null,
+      "xml": null,
+      "url": null,
+      "contentUrl": null,
+      "metadataVersion": 0,
+      "schemaVersion": null,
+      "source": null,
+      "isActive": false,
+      "state": "draft",
+      "reason": null,
+      "landingPage": null,
+      "created": "2019-04-04T13:02:20.000Z",
+      "registered": null,
+      "updated": "2019-04-04T13:02:20.000Z"
+    },
+    "relationships": {
+      "client": {
+        "data": {
+          "id": "gbif.gbif",
+          "type": "clients"
+        }
+      },
+      "media": {
+        "data": []
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "gbif.gbif",
+      "type": "clients",
+      "attributes": {
+        "name": "Global Biodiversity Information Facility",
+        "symbol": "GBIF.GBIF",
+        "year": 2018,
+        "contactName": "Daniel Noesgaard",
+        "contactEmail": "dnoesgaard@gbif.org",
+        "description": null,
+        "domains": "*",
+        "url": null,
+        "created": "2018-12-20T16:15:59.000Z",
+        "updated": "2018-12-21T08:54:33.000Z",
+        "isActive": true,
+        "hasPassword": true
+      },
+      "relationships": {
+        "provider": {
+          "data": {
+            "id": "gbif",
+            "type": "providers"
+          }
+        },
+        "prefixes": {
+          "data": [
+            {
+              "id": "10.21373",
+              "type": "prefixes"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

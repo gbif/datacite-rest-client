@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.configuration.ClientConfiguration;
+import org.gbif.datacite.rest.util.PropertiesManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
@@ -21,23 +22,30 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-/** Factory class for okHttp and retrofit clients. */
+/**
+ * Factory class for okHttp and retrofit clients.
+ */
 public final class RetrofitClientFactory {
 
     private static final Logger LOG = LoggerFactory.getLogger(RetrofitClientFactory.class);
+    private static final PropertiesManager APP_PROPERTIES = PropertiesManager.getInstance();
 
-    private RetrofitClientFactory() {}
+    private RetrofitClientFactory() {
+    }
 
-    /** Creates a {@link OkHttpClient} with a {@link Cache} from a specific {@link ClientConfiguration}. */
+    /**
+     * Creates a {@link OkHttpClient} with a {@link Cache} from a specific {@link ClientConfiguration}.
+     */
     public static OkHttpClient createClient(ClientConfiguration config) {
 
+        // for logging HTTP requests details
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.valueOf(APP_PROPERTIES.get("logging.interceptor.level")));
 
-        // TODO: 2019-04-01 use properties instead of implicit values. profiles?
         OkHttpClient.Builder clientBuilder =
                 new OkHttpClient.Builder()
-                        .addInterceptor(new BasicAuthInterceptor("GBIF.GBIF", "J9jotXAq8fdinDH2"))
+                        // test user: GBIF.GBIF password: J9jotXAq8fdinDH2
+                        .addInterceptor(new BasicAuthInterceptor(config.getUser(), config.getPassword()))
                         .addInterceptor(loggingInterceptor)
                         .connectTimeout(config.getTimeOut(), TimeUnit.SECONDS)
                         .readTimeout(config.getTimeOut(), TimeUnit.SECONDS);
@@ -52,14 +60,12 @@ public final class RetrofitClientFactory {
      * Creates retrofit client.
      * Some specific details were configured in order to process JSON API.
      *
-     * @param clientConfiguration client properties
-     * @param baseApiUrl target URL
-     * @param serviceClass service class
-     * @param <S> type
+     * @param clientConfiguration client properties (baseApiUrl etc.)
+     * @param serviceClass        service class
+     * @param <S>                 type
      * @return retrofit client
      */
-    public static <S> S createRetrofitClient(ClientConfiguration clientConfiguration, String baseApiUrl,
-                                             Class<S> serviceClass) {
+    public static <S> S createRetrofitClient(ClientConfiguration clientConfiguration, Class<S> serviceClass) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
@@ -78,7 +84,7 @@ public final class RetrofitClientFactory {
         // Create service. Use ConverterFactory for converting JSON API
         return new Retrofit.Builder()
                 .client(createClient(clientConfiguration))
-                .baseUrl(baseApiUrl)
+                .baseUrl(clientConfiguration.getBaseApiUrl())
                 .addConverterFactory(jsonapiConverterFactory)
                 .validateEagerly(true)
                 .build()

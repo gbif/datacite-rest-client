@@ -13,10 +13,16 @@ public class ClientConfiguration implements Serializable {
 
     private final Long fileCacheMaxSizeMb;
 
-    private ClientConfiguration(String baseApiUrl, long timeOut, long fileCacheMaxSizeMb) {
+    private final String user;
+
+    private final String password;
+
+    private ClientConfiguration(String baseApiUrl, long timeOut, long fileCacheMaxSizeMb, String user, String password) {
         this.baseApiUrl = baseApiUrl;
         this.timeOut = timeOut;
         this.fileCacheMaxSizeMb = fileCacheMaxSizeMb;
+        this.user = user;
+        this.password = password;
     }
 
     public String getBaseApiUrl() {
@@ -31,6 +37,14 @@ public class ClientConfiguration implements Serializable {
         return fileCacheMaxSizeMb;
     }
 
+    public String getUser() {
+        return user;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -42,12 +56,13 @@ public class ClientConfiguration implements Serializable {
         ClientConfiguration that = (ClientConfiguration) o;
         return Objects.equals(timeOut, that.timeOut)
                 && Objects.equals(fileCacheMaxSizeMb, that.fileCacheMaxSizeMb)
-                && Objects.equals(baseApiUrl, that.baseApiUrl);
+                && Objects.equals(baseApiUrl, that.baseApiUrl)
+                && Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(baseApiUrl, timeOut, fileCacheMaxSizeMb);
+        return Objects.hash(baseApiUrl, timeOut, fileCacheMaxSizeMb, user);
     }
 
     /**
@@ -63,6 +78,8 @@ public class ClientConfiguration implements Serializable {
         private String baseApiUrl;
         private Long timeOut = 60L;
         private Long fileCacheMaxSizeMb = 64L;
+        private String user;
+        private String password;
 
         /**
          * Hidden constructor to force use the containing class builder() method.
@@ -87,8 +104,18 @@ public class ClientConfiguration implements Serializable {
             return this;
         }
 
+        public Builder withUser(String user) {
+            this.user = user;
+            return this;
+        }
+
+        public Builder withPassword(String password) {
+            this.password = password;
+            return this;
+        }
+
         public ClientConfiguration build() {
-            return new ClientConfiguration(baseApiUrl, timeOut, fileCacheMaxSizeMb);
+            return new ClientConfiguration(baseApiUrl, timeOut, fileCacheMaxSizeMb, user, password);
         }
     }
 }

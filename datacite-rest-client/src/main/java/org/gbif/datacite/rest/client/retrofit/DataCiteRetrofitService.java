@@ -24,7 +24,7 @@ public interface DataCiteRetrofitService {
      */
     @Headers({"Accept: application/vnd.api+json"})
     @GET("/dois")
-    Call<Datacite42Schema> get();
+    Call<JSONAPIDocument<Datacite42Schema>> get();
 
     /**
      * Represents a DOI and provides access to metadata attributes.

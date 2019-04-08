@@ -13,7 +13,7 @@ public interface DataCiteService {
      *
      * @return a list of dois wrapped by {@link Datacite42Schema}
      */
-    Datacite42Schema getDois();
+    JSONAPIDocument<Datacite42Schema> getDois();
 
     /**
      * Get a doi.

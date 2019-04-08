@@ -23,7 +23,7 @@ public class DataCiteRetrofitSyncClient implements DataCiteService {
      */
     public DataCiteRetrofitSyncClient(ClientConfiguration clientConfiguration) {
         dataCiteRetrofitService = RetrofitClientFactory.createRetrofitClient(clientConfiguration,
-                clientConfiguration.getBaseApiUrl(), DataCiteRetrofitService.class);
+                DataCiteRetrofitService.class);
     }
 
     /**
@@ -32,7 +32,7 @@ public class DataCiteRetrofitSyncClient implements DataCiteService {
      * @return a list of dois wrapped by {@link Datacite42Schema}
      */
     @Override
-    public Datacite42Schema getDois() {
+    public JSONAPIDocument<Datacite42Schema> getDois() {
         return syncCall(dataCiteRetrofitService.get());
     }
 

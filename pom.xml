@@ -44,13 +44,13 @@
     </modules>
 
     <properties>
-
         <!-- Common variables -->
         <jdkLevel>1.8</jdkLevel>
         <encoding>UTF-8</encoding>
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
+        <logging.interceptor.level>BASIC</logging.interceptor.level>
 
         <!-- Logging -->
         <slf4j.version>1.7.5</slf4j.version>
@@ -65,15 +65,18 @@
         <retrofit.version>2.5.0</retrofit.version>
         <okhttp.version>3.11.0</okhttp.version>
         <okio.version>2.0.0</okio.version>
-        <mockwebserver.version>3.11.0</mockwebserver.version>
 
         <!-- Plugins -->
         <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
         <jaxb2-maven-plugin.version>2.4</jaxb2-maven-plugin.version>
         <jsonschema2pojo-maven-plugin.version>1.0.0</jsonschema2pojo-maven-plugin.version>
+        <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
 
         <!-- Checkstyle -->
         <plexus-compiler-javac-errorprone.version>2.8.3</plexus-compiler-javac-errorprone.version>
@@ -82,8 +85,11 @@
         <!-- Sonar -->
         <sonar.language>java</sonar.language>
         <sonar.sources>src/main/java</sonar.sources>
-        <sonar.exclusions>src/main/java/**/*</sonar.exclusions>
 
+        <!-- Testing -->
+        <junit.version>5.4.1</junit.version>
+        <cucumber.version>2.4.0</cucumber.version>
+        <skip.surefire.tests>false</skip.surefire.tests>
     </properties>
 
     <dependencyManagement>
@@ -155,10 +161,66 @@
                 <artifactId>jsonschema2pojo-core</artifactId>
                 <version>${jsonschema2pojo.version}</version>
             </dependency>
+
+            <!-- Testing -->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.vintage</groupId>
+                <artifactId>junit-vintage-engine</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>mockwebserver</artifactId>
+                <version>${okhttp.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-junit</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java8</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+            <testResource>
+                <directory>src/it/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -209,9 +271,8 @@
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <sourceDirectory>
-                            ${project.basedir}/src/main/resources/schema
-                        </sourceDirectory>
+                        <sourceDirectory>${project.basedir}/src/main/resources/schema</sourceDirectory>
+                        <outputDirectory>${project.basedir}/src/main/java-generated/</outputDirectory>
                         <targetPackage>org.gbif.datacite.model.json</targetPackage>
                         <customAnnotator>org.gbif.datacite.jsonapi.annotator.JsonApiAnnotator</customAnnotator>
                     </configuration>
@@ -253,8 +314,58 @@
                         </execution>
                     </executions>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <skipTests>${skip.surefire.tests}</skipTests>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${build-helper-maven-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${maven-failsafe-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>integration-tests</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <skip.surefire.tests>true</skip.surefire.tests>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>integration-tests</id>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
