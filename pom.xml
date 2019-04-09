@@ -77,6 +77,7 @@
         <jsonschema2pojo-maven-plugin.version>1.0.0</jsonschema2pojo-maven-plugin.version>
         <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
+        <sonar-maven-plugin.version>3.6.0.1398</sonar-maven-plugin.version>
 
         <!-- Checkstyle -->
         <plexus-compiler-javac-errorprone.version>2.8.3</plexus-compiler-javac-errorprone.version>
@@ -88,8 +89,18 @@
 
         <!-- Testing -->
         <junit.version>5.4.1</junit.version>
+        <mockito.version>2.26.0</mockito.version>
         <cucumber.version>2.4.0</cucumber.version>
         <skip.surefire.tests>false</skip.surefire.tests>
+
+        <!-- JaCoCo -->
+        <jacoco.it.output.file>${java.io.tmpdir}jacoco-it.exec</jacoco.it.output.file>
+        <jacoco.ut.output.file>${project.build.directory}/jacoco.exec</jacoco.ut.output.file>
+
+        <!-- Sonar -->
+        <sonar.jacoco.reportPaths>${jacoco.ut.output.file},${jacoco.it.output.file}</sonar.jacoco.reportPaths>
+        <sonar.exclusions>**/java-generated/**</sonar.exclusions>
+        <sonar.cpd.exclusions>**/java-generated/**</sonar.cpd.exclusions>
     </properties>
 
     <dependencyManagement>
@@ -179,6 +190,25 @@
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>mockwebserver</artifactId>
                 <version>${okhttp.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-inline</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -335,21 +365,56 @@
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
                 </plugin>
+
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 
     <profiles>
         <profile>
+            <id>dev</id>
+            <properties>
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+            </properties>
+        </profile>
+
+        <profile>
             <id>integration-tests</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <properties>
                 <skip.surefire.tests>true</skip.surefire.tests>
             </properties>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent-it</id>
+                                <goals>
+                                    <goal>prepare-agent-integration</goal>
+                                </goals>
+                                <phase>package</phase>
+                                <configuration>
+                                    <destFile>${jacoco.it.output.file}</destFile>
+                                    <append>true</append>
+                                    <includes>org.gbif.*</includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -366,6 +431,30 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
 
+        <profile>
+            <id>coverage</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>prepare-agent-ut</id>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                                <configuration>
+                                    <destFile>${jacoco.ut.output.file}</destFile>
+                                    <append>true</append>
+                                    <includes>org.gbif.*</includes>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
