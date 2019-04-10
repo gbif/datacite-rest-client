@@ -16,6 +16,10 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Tests {@link JsonApiAnnotator} class.
+ * Should check all the jsonapi-converter annotations were added.
+ */
 @ExtendWith(MockitoExtension.class)
 class JsonApiAnnotatorTest {
 
@@ -33,7 +37,7 @@ class JsonApiAnnotatorTest {
 
     @DisplayName("Class with property 'doi' should be annotated with the annotation 'Type'")
     @Test
-    void testPropertyField_hasPropertyDoi_classShouldBeAnnotatedWithTypeOnce() {
+    void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() {
 
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
@@ -49,7 +53,7 @@ class JsonApiAnnotatorTest {
 
     @DisplayName("Property 'id' should be annotated with the annotation 'Id'")
     @Test
-    void testPropertyField_hasPropertyId_idPropertyShouldBeAnnotatedWithId() {
+    void propertyIdShouldBeAnnotatedWithAnnotationId() {
 
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
