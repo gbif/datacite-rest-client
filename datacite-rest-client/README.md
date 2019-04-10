@@ -1,8 +1,8 @@
-#datacite-rest-client
+# datacite-rest-client
 
 An implementation of a Java client for the REST Datacite API.
 
- ##JSON:API
+ ## JSON:API
  API works through [JSON:API](https://jsonapi.org/) format 
  and uses java implementation [jsonapi-converter](https://github.com/jasminb/jsonapi-converter).
  
