@@ -97,7 +97,7 @@
         <skip.surefire.tests>false</skip.surefire.tests>
 
         <!-- JaCoCo -->
-        <jacoco.it.output.file>${java.io.tmpdir}jacoco-it.exec</jacoco.it.output.file>
+        <jacoco.it.output.file>${java.io.tmpdir}/jacoco-it.exec</jacoco.it.output.file>
         <jacoco.ut.output.file>${project.build.directory}/jacoco.exec</jacoco.ut.output.file>
 
         <!-- Sonar -->
@@ -427,6 +427,7 @@
             <id>dev</id>
             <properties>
                 <sonar.host.url>http://localhost:9000</sonar.host.url>
+                <jacoco.it.output.file>${java.io.tmpdir}jacoco-it.exec</jacoco.it.output.file>
             </properties>
         </profile>
 
