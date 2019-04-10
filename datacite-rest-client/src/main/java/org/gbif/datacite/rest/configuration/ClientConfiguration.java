@@ -25,7 +25,7 @@ public class ClientConfiguration implements Serializable {
     /**
      * Args constructor.
      * @param baseApiUrl service URL
-     * @param timeOut timeout time in millisec
+     * @param timeOut timeout time in seconds
      * @param fileCacheMaxSizeMb cache file size in MB
      * @param user user
      * @param password password
