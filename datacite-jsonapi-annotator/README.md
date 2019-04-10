@@ -1,4 +1,4 @@
-#datacite-jsonapi-annotator
+# datacite-jsonapi-annotator
 
 This module contains only one class JsonApiAnnotator. 
 That was moved to the separate module because of jsonschema2pojo-maven-plugin requires a standalone dependency to 
