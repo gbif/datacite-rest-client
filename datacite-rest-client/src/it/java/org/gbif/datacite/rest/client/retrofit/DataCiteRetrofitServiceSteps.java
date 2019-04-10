@@ -13,6 +13,9 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Logic class for {@link DataCiteRetrofitServiceIT}.
+ */
 public class DataCiteRetrofitServiceSteps {
 
     private static final ITPropertiesManager IT_PROPERTIES = ITPropertiesManager.getInstance();
@@ -63,9 +66,9 @@ public class DataCiteRetrofitServiceSteps {
         datacite42Schema.setDoi(DOI_105);
 
 
-        JSONAPIDocument<Datacite42Schema> jsonapi = new JSONAPIDocument<>(datacite42Schema);
+        JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
 
-        response = service.create(jsonapi).execute();
+        response = service.create(jsonApi).execute();
     }
 
     @When("^Perform a request to DataCite's PUT DOI$")
@@ -75,9 +78,9 @@ public class DataCiteRetrofitServiceSteps {
         datacite42Schema.setDoi(DOI_105);
         datacite42Schema.setPublicationYear("2019");
 
-        JSONAPIDocument<Datacite42Schema> jsonapi = new JSONAPIDocument<>(datacite42Schema);
+        JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
 
-        response = service.update(DOI_105, jsonapi).execute();
+        response = service.update(DOI_105, jsonApi).execute();
     }
 
     @When("^Perform a request to DataCite's DELETE DOI$")

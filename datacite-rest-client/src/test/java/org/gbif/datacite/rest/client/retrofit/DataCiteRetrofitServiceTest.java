@@ -24,10 +24,12 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Tests {@link DataCiteRetrofitService} methods.
+ */
 class DataCiteRetrofitServiceTest {
     private static MockWebServer server;
     private static DataCiteRetrofitService service;
-    private static ResourceConverter converter;
 
     @BeforeAll
     static void setup() throws IOException {
@@ -36,7 +38,6 @@ class DataCiteRetrofitServiceTest {
         server.start();
 
         // Setup retrofit
-        converter = new ResourceConverter(Datacite42Schema.class);
         ObjectMapper objectMapper = new ObjectMapper();
 
         // exclude empty arrays from de/serialization
