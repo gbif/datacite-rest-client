@@ -3,6 +3,11 @@ package org.gbif.datacite.rest.configuration;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Class contains some information to perform requests to services.
+ * Primary information such as service URL, user credentials and
+ * auxiliary technical data such as timeout time and cache size.
+ */
 public class ClientConfiguration implements Serializable {
 
     private static final long serialVersionUID = 7778374827110638452L;
@@ -17,6 +22,14 @@ public class ClientConfiguration implements Serializable {
 
     private final String password;
 
+    /**
+     * Args constructor.
+     * @param baseApiUrl service URL
+     * @param timeOut timeout time in millisec
+     * @param fileCacheMaxSizeMb cache file size in MB
+     * @param user user
+     * @param password password
+     */
     private ClientConfiguration(String baseApiUrl, long timeOut, long fileCacheMaxSizeMb, String user, String password) {
         this.baseApiUrl = baseApiUrl;
         this.timeOut = timeOut;

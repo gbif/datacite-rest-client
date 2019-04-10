@@ -50,7 +50,10 @@
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
-        <logging.interceptor.level>BASIC</logging.interceptor.level>
+        <logging.interceptor.level>NONE</logging.interceptor.level>
+
+        <!-- Codemodel -->
+        <codemodel.version>2.6</codemodel.version>
 
         <!-- Logging -->
         <slf4j.version>1.7.5</slf4j.version>
@@ -101,6 +104,7 @@
         <sonar.jacoco.reportPaths>${jacoco.ut.output.file},${jacoco.it.output.file}</sonar.jacoco.reportPaths>
         <sonar.exclusions>**/java-generated/**</sonar.exclusions>
         <sonar.cpd.exclusions>**/java-generated/**</sonar.cpd.exclusions>
+        <junit4.version>4.12</junit4.version>
     </properties>
 
     <dependencyManagement>
@@ -173,10 +177,41 @@
                 <version>${jsonschema2pojo.version}</version>
             </dependency>
 
+            <!-- Codemodel -->
+            <dependency>
+                <groupId>com.sun.codemodel</groupId>
+                <artifactId>codemodel</artifactId>
+                <version>${codemodel.version}</version>
+            </dependency>
+
             <!-- Testing -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit4.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
@@ -212,6 +247,12 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-core</artifactId>
+                <version>${cucumber.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>io.cucumber</groupId>
                 <artifactId>cucumber-junit</artifactId>
