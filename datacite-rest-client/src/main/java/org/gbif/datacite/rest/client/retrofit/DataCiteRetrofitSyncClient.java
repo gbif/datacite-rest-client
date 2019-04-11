@@ -5,8 +5,9 @@ import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.client.DataCiteService;
 import org.gbif.datacite.rest.configuration.ClientConfiguration;
 import org.gbif.datacite.rest.retrofit.RetrofitClientFactory;
+import retrofit2.Response;
 
-import static org.gbif.datacite.rest.retrofit.SyncCall.syncCall;
+import static org.gbif.datacite.rest.retrofit.SyncCall.syncCallWithResponse;
 
 /**
  * Represents an {@link DataCiteService} synchronous client.
@@ -32,30 +33,30 @@ public class DataCiteRetrofitSyncClient implements DataCiteService {
      * @return a list of dois wrapped by {@link Datacite42Schema}
      */
     @Override
-    public JSONAPIDocument<Datacite42Schema> getDois() {
-        return syncCall(dataCiteRetrofitService.get());
+    public Response<JSONAPIDocument<Datacite42Schema>> getDois() {
+        return syncCallWithResponse(dataCiteRetrofitService.get());
     }
 
     /**
      * Performs a synchronous call to the DataCite service's create.
      *
      * @param body data
-     * @return created object in JSON API format
+     * @return created object in JSON API format wrapped by {@link Response}
      */
     @Override
-    public JSONAPIDocument<Datacite42Schema> createDoi(JSONAPIDocument<Datacite42Schema> body) {
-        return syncCall(dataCiteRetrofitService.create(body));
+    public Response<JSONAPIDocument<Datacite42Schema>> createDoi(JSONAPIDocument<Datacite42Schema> body) {
+        return syncCallWithResponse(dataCiteRetrofitService.create(body));
     }
 
     /**
      * Performs a synchronous call to the DataCite service's get.
      *
      * @param doi identifier
-     * @return a doi wrapped by {@link Datacite42Schema}
+     * @return a doi wrapped by {@link Datacite42Schema} and {@link Response}
      */
     @Override
-    public JSONAPIDocument<Datacite42Schema> getDoi(String doi) {
-        return syncCall(dataCiteRetrofitService.get(doi));
+    public Response<JSONAPIDocument<Datacite42Schema>> getDoi(String doi) {
+        return syncCallWithResponse(dataCiteRetrofitService.get(doi));
     }
 
     /**
@@ -63,21 +64,21 @@ public class DataCiteRetrofitSyncClient implements DataCiteService {
      *
      * @param doi  identifier
      * @param body data
-     * @return updated object in JSON API format
+     * @return updated object in JSON API format wrapped by {@link Response}
      */
     @Override
-    public JSONAPIDocument<Datacite42Schema> updateDoi(String doi, JSONAPIDocument<Datacite42Schema> body) {
-        return syncCall(dataCiteRetrofitService.update(doi, body));
+    public Response<JSONAPIDocument<Datacite42Schema>> updateDoi(String doi, JSONAPIDocument<Datacite42Schema> body) {
+        return syncCallWithResponse(dataCiteRetrofitService.update(doi, body));
     }
 
     /**
      * Performs a synchronous call to the DataCite service's delete.
      *
      * @param doi identifier
+     * @return {@link Response} with no content
      */
     @Override
-    public void deleteDoi(String doi) {
-        syncCall(dataCiteRetrofitService.delete(doi));
+    public Response<Void> deleteDoi(String doi) {
+        return syncCallWithResponse(dataCiteRetrofitService.delete(doi));
     }
-
 }

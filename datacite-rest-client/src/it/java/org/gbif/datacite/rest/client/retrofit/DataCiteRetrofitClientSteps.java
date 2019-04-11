@@ -6,24 +6,21 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.configuration.ClientConfiguration;
-import org.gbif.datacite.rest.retrofit.RetrofitClientFactory;
 import retrofit2.Response;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Logic class for {@link DataCiteRetrofitServiceIT}.
+ * Logic class for {@link DataCiteRetrofitClientIT}.
  */
-public class DataCiteRetrofitServiceSteps {
+public class DataCiteRetrofitClientSteps {
 
     private static final ITPropertiesManager IT_PROPERTIES = ITPropertiesManager.getInstance();
 
     private static final String DOI_110 = "10.21373/110";
     private static final String DOI_105 = "10.21373/105";
 
-    private DataCiteRetrofitService service;
+    private DataCiteRetrofitSyncClient client;
     private Response<JSONAPIDocument<Datacite42Schema>> response;
     private Response<Void> deleteResponse;
 
@@ -36,12 +33,12 @@ public class DataCiteRetrofitServiceSteps {
                 .withPassword(IT_PROPERTIES.get("datacite.password"))
                 .build();
 
-        service = RetrofitClientFactory.createRetrofitClient(clientConfiguration, DataCiteRetrofitService.class);
+        client = new DataCiteRetrofitSyncClient(clientConfiguration);
     }
 
     @When("^Perform a request to DataCite's GET DOI by id$")
-    public void performGetSingleDoi() throws IOException {
-        response = service.get(DOI_110).execute();
+    public void performGetSingleDoi() {
+        response = client.getDoi(DOI_110);
     }
 
     @Then("^Response status should be \"([^\"]*)\"$")
@@ -55,24 +52,23 @@ public class DataCiteRetrofitServiceSteps {
     }
 
     @When("^Perform a request to DataCite's GET DOI$")
-    public void performGetDoiList() throws IOException {
-        response = service.get().execute();
+    public void performGetDoiList() {
+        response = client.getDois();
     }
 
     @When("^Perform a request to DataCite's POST DOI$")
-    public void performCreateDoi() throws IOException {
+    public void performCreateDoi() {
         Datacite42Schema datacite42Schema = new Datacite42Schema();
         datacite42Schema.setId(DOI_105);
         datacite42Schema.setDoi(DOI_105);
 
-
         JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
 
-        response = service.create(jsonApi).execute();
+        response = client.createDoi(jsonApi);
     }
 
     @When("^Perform a request to DataCite's PUT DOI$")
-    public void performUpdateDoi() throws IOException {
+    public void performUpdateDoi() {
         Datacite42Schema datacite42Schema = new Datacite42Schema();
         datacite42Schema.setId(DOI_105);
         datacite42Schema.setDoi(DOI_105);
@@ -80,12 +76,11 @@ public class DataCiteRetrofitServiceSteps {
 
         JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
 
-        response = service.update(DOI_105, jsonApi).execute();
+        response = client.updateDoi(DOI_105, jsonApi);
     }
 
     @When("^Perform a request to DataCite's DELETE DOI$")
-    public void performDeleteDoi() throws IOException {
-        deleteResponse = service.delete(DOI_105).execute();
+    public void performDeleteDoi() {
+        deleteResponse = client.deleteDoi(DOI_105);
     }
-
 }

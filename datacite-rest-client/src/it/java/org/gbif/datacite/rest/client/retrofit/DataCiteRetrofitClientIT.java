@@ -5,9 +5,9 @@ import cucumber.api.junit.Cucumber;
 import org.junit.runner.RunWith;
 
 /**
- * Provides integration tests for {@link DataCiteRetrofitService}.
+ * Provides integration tests for {@link DataCiteRetrofitSyncClient}.
  * Feature file is datacite_positive.feature (see resources/features).
- * Logic class {@link DataCiteRetrofitServiceSteps}.
+ * Logic class {@link DataCiteRetrofitClientSteps}.
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -17,5 +17,5 @@ import org.junit.runner.RunWith;
         plugin = "pretty",
         monochrome = true
 )
-public class DataCiteRetrofitServiceIT {
+public class DataCiteRetrofitClientIT {
 }
