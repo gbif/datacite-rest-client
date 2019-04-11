@@ -59,3 +59,5 @@ An implementation of a Java client for the REST Datacite API.
  To perform some operations (POST, PUT, DELETE) additional rights are required - Client ID and password.
  
  Important: only draft DOI can be deleted.
+ 
+[Parent](../README.md)

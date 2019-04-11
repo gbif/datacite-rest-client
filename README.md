@@ -10,8 +10,8 @@ Initially it will provide the basic DOI operations described [here](https://supp
  
 ## Modules
  Consists of two modules:
- - **datacite-jsonapi-annotator**
- - **datacite-rest-client**
+ - [**datacite-jsonapi-annotator**](datacite-jsonapi-annotator/README.md)
+ - [**datacite-rest-client**](datacite-rest-client/README.md)
  
 ## Dependencies
 The implementation of this library will depend on the following commonly used libraries:
@@ -31,3 +31,5 @@ The implementation of this library will depend on the following commonly used li
 - **integration-tests** - for launching integration tests. 
 Includes maven-failsafe-plugin with configurations 
 and code coverage by integration tests with jacoco-maven-plugiin
+
+See [pom.xml](pom.xml) for more details.
