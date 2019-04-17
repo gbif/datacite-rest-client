@@ -1,4 +1,4 @@
-package org.gbif.datacite.rest.retrofit;
+package org.gbif.datacite.rest.client.configuration;
 
 import okhttp3.Credentials;
 import okhttp3.Interceptor;

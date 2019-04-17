@@ -1,6 +1,6 @@
-package org.gbif.datacite.rest.retrofit;
+package org.gbif.datacite.rest.client.configuration;
 
-import org.gbif.datacite.rest.exception.DataCiteClientException;
+import org.gbif.datacite.rest.client.exception.DataCiteClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;

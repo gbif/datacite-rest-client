@@ -1,9 +1,12 @@
-package org.gbif.datacite.rest.exception;
+package org.gbif.datacite.rest.client.exception;
+
+import org.gbif.datacite.rest.client.configuration.SyncCall;
+import org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitSyncClient;
 
 /**
  * Represents an exceptional case while interacting with a DataCite service.
- * See {@link org.gbif.datacite.rest.retrofit.SyncCall}
- * See {@link org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitSyncClient}
+ * See {@link SyncCall}
+ * See {@link DataCiteRetrofitSyncClient}
  */
 public class DataCiteClientException extends RuntimeException {
 

@@ -4,9 +4,14 @@ import com.github.jasminb.jsonapi.JSONAPIDocument;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
-import org.gbif.datacite.rest.configuration.ClientConfiguration;
+import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
+import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
 import retrofit2.Response;
+
+import java.io.IOException;
+import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -57,24 +62,32 @@ public class DataCiteRetrofitClientSteps {
     }
 
     @When("^Perform a request to DataCite's POST DOI$")
-    public void performCreateDoi() {
-        Datacite42Schema datacite42Schema = new Datacite42Schema();
-        datacite42Schema.setId(DOI_105);
-        datacite42Schema.setDoi(DOI_105);
+    public void performCreateDoi() throws IOException {
+        DoiSimplifiedModel model = new DoiSimplifiedModel();
+        model.setDoi(DOI_105);
+        model.setId(DOI_105);
+        String xmlMetadata = IOUtils.toString(
+                this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
+                "UTF-8");
 
-        JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
+        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
+
+        JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 
         response = client.createDoi(jsonApi);
     }
 
     @When("^Perform a request to DataCite's PUT DOI$")
-    public void performUpdateDoi() {
-        Datacite42Schema datacite42Schema = new Datacite42Schema();
-        datacite42Schema.setId(DOI_105);
-        datacite42Schema.setDoi(DOI_105);
-        datacite42Schema.setPublicationYear("2019");
+    public void performUpdateDoi() throws IOException {
+        DoiSimplifiedModel model = new DoiSimplifiedModel();
+        model.setDoi(DOI_105);
+        model.setId(DOI_105);
+        String xmlMetadata = IOUtils.toString(
+                this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
+                "UTF-8");
+        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
 
-        JSONAPIDocument<Datacite42Schema> jsonApi = new JSONAPIDocument<>(datacite42Schema);
+        JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 
         response = client.updateDoi(DOI_105, jsonApi);
     }

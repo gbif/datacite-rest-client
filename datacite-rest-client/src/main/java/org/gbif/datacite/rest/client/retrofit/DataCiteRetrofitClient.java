@@ -2,6 +2,7 @@ package org.gbif.datacite.rest.client.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
 import org.gbif.datacite.model.json.Datacite42Schema;
+import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -15,7 +16,7 @@ import retrofit2.http.Path;
  * GBIF DataCite Retrofit Service client.
  * Provides CRUD operations.
  */
-public interface DataCiteRetrofitService {
+public interface DataCiteRetrofitClient {
 
     /**
      * Return a list of dois.
@@ -34,7 +35,7 @@ public interface DataCiteRetrofitService {
      */
     @Headers({"Accept: application/vnd.api+json", "Content-Type: application/vnd.api+json"})
     @POST("/dois")
-    Call<JSONAPIDocument<Datacite42Schema>> create(@Body JSONAPIDocument<Datacite42Schema> body);
+    Call<JSONAPIDocument<Datacite42Schema>> create(@Body JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
      * Returns a doi.
@@ -55,7 +56,7 @@ public interface DataCiteRetrofitService {
      */
     @Headers({"Accept: application/vnd.api+json", "Content-Type: application/vnd.api+json"})
     @PUT("/dois/{id}")
-    Call<JSONAPIDocument<Datacite42Schema>> update(@Path("id") String doi, @Body JSONAPIDocument<Datacite42Schema> body);
+    Call<JSONAPIDocument<Datacite42Schema>> update(@Path("id") String doi, @Body JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
      * Delete a doi.

@@ -1,4 +1,4 @@
-package org.gbif.datacite.rest.util;
+package org.gbif.datacite.rest.client.util;
 
 import java.util.ResourceBundle;
 

@@ -59,6 +59,9 @@
         <slf4j.version>1.7.5</slf4j.version>
         <logback.version>1.2.3</logback.version>
 
+        <!-- Util -->
+        <commons.io.version>2.6</commons.io.version>
+
         <!-- JSON -->
         <jackson.version>2.9.8</jackson.version>
         <jsonapi.version>0.9</jsonapi.version>
@@ -84,7 +87,7 @@
 
         <!-- Checkstyle -->
         <plexus-compiler-javac-errorprone.version>2.8.3</plexus-compiler-javac-errorprone.version>
-        <error_prone_core.version>2.3.1</error_prone_core.version>
+        <error_prone_core.version>2.3.3</error_prone_core.version>
 
         <!-- Sonar -->
         <sonar.language>java</sonar.language>
@@ -119,6 +122,13 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
                 <scope>runtime</scope>
+            </dependency>
+
+            <!-- Util -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
             </dependency>
 
             <!-- Http clients -->
@@ -306,6 +316,7 @@
                             <arg>-XepExcludedPaths:.*/src/main/java-generated/.*</arg>
                             <arg>-XepDisableWarningsInGeneratedCode</arg>
                             <arg>-Xep:MissingOverride:ERROR</arg>
+                            <arg>-Xep:MissingSummary:ERROR</arg>
                         </compilerArgs>
                     </configuration>
                     <dependencies>

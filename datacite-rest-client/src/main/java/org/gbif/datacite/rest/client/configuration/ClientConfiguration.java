@@ -1,4 +1,4 @@
-package org.gbif.datacite.rest.configuration;
+package org.gbif.datacite.rest.client.configuration;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -100,7 +100,6 @@ public class ClientConfiguration implements Serializable {
         private Builder() {
             //DO NOTHING
         }
-
 
         public Builder withBaseApiUrl(String baseApiUrl) {
             this.baseApiUrl = baseApiUrl;
