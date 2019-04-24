@@ -8,6 +8,7 @@ import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
 import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
+import org.gbif.datacite.rest.client.model.EventType;
 import retrofit2.Response;
 
 import java.io.IOException;
@@ -67,11 +68,12 @@ public class DataCiteRetrofitClientSteps {
         DoiSimplifiedModel model = new DoiSimplifiedModel();
         model.setDoi(DOI_105);
         model.setId(DOI_105);
+        model.setEvent(EventType.DRAFT.getValue());
         String xmlMetadata = IOUtils.toString(
                 this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
                 StandardCharsets.UTF_8);
 
-        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
+        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes(StandardCharsets.UTF_8)));
 
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 
@@ -86,7 +88,7 @@ public class DataCiteRetrofitClientSteps {
         String xmlMetadata = IOUtils.toString(
                 this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
                 StandardCharsets.UTF_8);
-        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
+        model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes(StandardCharsets.UTF_8)));
 
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 

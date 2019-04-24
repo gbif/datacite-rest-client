@@ -2,6 +2,7 @@ package org.gbif.datacite.rest.client.model;
 
 /**
  * Represents event types which can be performed on the DOI.
+ * Event type can be omitted then DOI will be created with the state 'draft'.
  */
 public enum EventType {
 
@@ -18,14 +19,20 @@ public enum EventType {
     /**
      * Publish DOI.
      */
-    PUBLISH("publish");
+    PUBLISH("publish"),
+
+    /**
+     * Can be omitted.
+     */
+    DRAFT(null);
 
     /**
      * String value.
      */
-    private String value;
+    private final String value;
 
-    EventType(String event) {
+    EventType(String value) {
+        this.value = value;
     }
 
     public String getValue() {
