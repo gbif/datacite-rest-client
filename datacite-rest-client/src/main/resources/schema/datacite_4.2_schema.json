@@ -268,6 +268,9 @@
       "type": "string",
       "format": "year"
     },
+    "state": {
+      "type": "string"
+    },
     "subjects": {
       "type": "array",
       "items": {
