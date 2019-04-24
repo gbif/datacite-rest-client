@@ -4,6 +4,7 @@ import com.github.jasminb.jsonapi.annotations.Id;
 import com.github.jasminb.jsonapi.annotations.Type;
 
 import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * For creation and/or updating DOI.
@@ -99,11 +100,12 @@ public class DoiSimplifiedModel {
 
     @Override
     public String toString() {
-        return "DoiSimplifiedModel{" +
-                "id='" + id + '\'' +
-                ", doi='" + doi + '\'' +
-                ", event='" + event + '\'' +
-                ", url='" + url + '\'' +
-                '}';
+        return new StringJoiner(", ", DoiSimplifiedModel.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("doi='" + doi + "'")
+                .add("event='" + event + "'")
+                .add("xml='" + xml + "'")
+                .add("url='" + url + "'")
+                .toString();
     }
 }

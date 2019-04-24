@@ -11,6 +11,7 @@ import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,7 +69,7 @@ public class DataCiteRetrofitClientSteps {
         model.setId(DOI_105);
         String xmlMetadata = IOUtils.toString(
                 this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
-                "UTF-8");
+                StandardCharsets.UTF_8);
 
         model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
 
@@ -84,7 +85,7 @@ public class DataCiteRetrofitClientSteps {
         model.setId(DOI_105);
         String xmlMetadata = IOUtils.toString(
                 this.getClass().getResourceAsStream("/datacite-example-full-v4.xml"),
-                "UTF-8");
+                StandardCharsets.UTF_8);
         model.setXml(Base64.getEncoder().encodeToString(xmlMetadata.getBytes()));
 
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);

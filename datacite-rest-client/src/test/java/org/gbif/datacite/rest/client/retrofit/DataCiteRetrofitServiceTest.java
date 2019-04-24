@@ -18,6 +18,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
@@ -27,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 /**
  * Tests {@link DataCiteRetrofitClient} methods.
  */
+@DisplayName("Test DataCiteRetrofitService methods")
 class DataCiteRetrofitServiceTest {
     private static MockWebServer server;
     private static DataCiteRetrofitClient service;
@@ -71,7 +73,7 @@ class DataCiteRetrofitServiceTest {
         // given
         String response = IOUtils.toString(
                 this.getClass().getResourceAsStream("/draftDoiResponse.json"),
-                "UTF-8");
+                StandardCharsets.UTF_8);
 
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
@@ -96,7 +98,7 @@ class DataCiteRetrofitServiceTest {
         // given
         String response = IOUtils.toString(
                 this.getClass().getResourceAsStream("/draftDoiResponse.json"),
-                "UTF-8");
+                StandardCharsets.UTF_8);
 
         server.enqueue(new MockResponse()
                 .setResponseCode(201)
