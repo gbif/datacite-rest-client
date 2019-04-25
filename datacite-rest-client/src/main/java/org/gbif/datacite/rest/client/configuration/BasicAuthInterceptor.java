@@ -1,4 +1,4 @@
-package org.gbif.datacite.rest.retrofit;
+package org.gbif.datacite.rest.client.configuration;
 
 import okhttp3.Credentials;
 import okhttp3.Interceptor;
@@ -15,7 +15,7 @@ public class BasicAuthInterceptor implements Interceptor {
 
     private String credentials;
 
-    public BasicAuthInterceptor(String user, String password) {
+    BasicAuthInterceptor(String user, String password) {
         this.credentials = Credentials.basic(user, password);
     }
 

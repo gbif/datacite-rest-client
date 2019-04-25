@@ -218,6 +218,19 @@
     "doi": {
       "type": "string"
     },
+    "identifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identifier": {"type": "string", "format": "doi"},
+          "identifierType": {"type":  "string", "enum":  ["DOI", "URL"]}
+        },
+        "required": ["identifier", "identifierType"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
     "creators": {
       "type": "array",
       "items": {
@@ -254,6 +267,9 @@
     "publicationYear": {
       "type": "string",
       "format": "year"
+    },
+    "state": {
+      "type": "string"
     },
     "subjects": {
       "type": "array",
@@ -356,22 +372,14 @@
     "sizes": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "size": {"type": "string"}
-        },
-        "required": ["size"]
+        "type": "string"
       },
       "uniqueItems": true
     },
     "formats": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "format": {"type": "string"}
-        },
-        "required": ["format"]
+        "type": "string"
       },
       "uniqueItems": true
     },
@@ -460,7 +468,6 @@
   },
 
   "required": [
-    "identifier",
     "creators",
     "titles",
     "publisher",

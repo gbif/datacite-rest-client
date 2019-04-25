@@ -1,4 +1,4 @@
-package org.gbif.datacite.rest.retrofit;
+package org.gbif.datacite.rest.client.configuration;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,8 +9,8 @@ import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import org.gbif.datacite.model.json.Datacite42Schema;
-import org.gbif.datacite.rest.configuration.ClientConfiguration;
-import org.gbif.datacite.rest.util.PropertiesManager;
+import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
+import org.gbif.datacite.rest.client.util.PropertiesManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
@@ -75,7 +75,7 @@ public final class RetrofitClientFactory {
                 JsonInclude.Value.construct(JsonInclude.Include.NON_EMPTY, null));
 
         // allowing unknown field in section "include" JSON API
-        ResourceConverter resourceConverter = new ResourceConverter(objectMapper, Datacite42Schema.class);
+        ResourceConverter resourceConverter = new ResourceConverter(objectMapper, Datacite42Schema.class, DoiSimplifiedModel.class);
         resourceConverter.enableDeserializationOption(DeserializationFeature.ALLOW_UNKNOWN_INCLUSIONS);
 
         JSONAPIConverterFactory jsonapiConverterFactory = new JSONAPIConverterFactory(resourceConverter);

@@ -2,7 +2,8 @@ package org.gbif.datacite.rest.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
 import org.gbif.datacite.model.json.Datacite42Schema;
-import org.gbif.datacite.rest.exception.DataCiteClientException;
+import org.gbif.datacite.rest.client.configuration.SyncCall;
+import org.gbif.datacite.rest.client.exception.DataCiteClientException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

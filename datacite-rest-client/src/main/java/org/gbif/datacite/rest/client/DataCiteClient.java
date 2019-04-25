@@ -2,13 +2,14 @@ package org.gbif.datacite.rest.client;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
 import org.gbif.datacite.model.json.Datacite42Schema;
+import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
 import retrofit2.Response;
 
 /**
  * GBIF DataCite Service client.
  * See {@link Datacite42Schema}
  */
-public interface DataCiteService {
+public interface DataCiteClient {
 
     /**
      * Gets a list of dois.
@@ -31,7 +32,7 @@ public interface DataCiteService {
      * @param body data
      * @return created object in JSON API format wrapped by {@link Response}
      */
-    Response<JSONAPIDocument<Datacite42Schema>> createDoi(JSONAPIDocument<Datacite42Schema> body);
+    Response<JSONAPIDocument<Datacite42Schema>> createDoi(JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
      * Update a doi.
@@ -40,7 +41,7 @@ public interface DataCiteService {
      * @param body data
      * @return updated object in JSON API format wrapped by {@link Response}
      */
-    Response<JSONAPIDocument<Datacite42Schema>> updateDoi(String doi, JSONAPIDocument<Datacite42Schema> body);
+    Response<JSONAPIDocument<Datacite42Schema>> updateDoi(String doi, JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
      * Delete a doi.

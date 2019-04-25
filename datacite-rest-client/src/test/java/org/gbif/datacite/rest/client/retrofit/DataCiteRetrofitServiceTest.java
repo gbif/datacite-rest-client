@@ -8,8 +8,8 @@ import com.github.jasminb.jsonapi.ResourceConverter;
 import com.github.jasminb.jsonapi.retrofit.JSONAPIConverterFactory;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
+import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
-import org.gbif.datacite.util.IOUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +18,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
@@ -25,11 +26,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * Tests {@link DataCiteRetrofitService} methods.
+ * Tests {@link DataCiteRetrofitClient} methods.
  */
+@DisplayName("Test DataCiteRetrofitService methods")
 class DataCiteRetrofitServiceTest {
     private static MockWebServer server;
-    private static DataCiteRetrofitService service;
+    private static DataCiteRetrofitClient service;
 
     @BeforeAll
     static void setup() throws IOException {
@@ -57,7 +59,7 @@ class DataCiteRetrofitServiceTest {
                 .addConverterFactory(converterFactory)
                 .build();
 
-        service = retrofit.create(DataCiteRetrofitService.class);
+        service = retrofit.create(DataCiteRetrofitClient.class);
     }
 
     @AfterAll
@@ -69,7 +71,9 @@ class DataCiteRetrofitServiceTest {
     @DisplayName("test getting a single doi")
     void testGetDoi() throws Exception {
         // given
-        String response = IOUtils.getResourceAsString("draftDoiResponse.json");
+        String response = IOUtils.toString(
+                this.getClass().getResourceAsStream("/draftDoiResponse.json"),
+                StandardCharsets.UTF_8);
 
         server.enqueue(new MockResponse()
                 .setResponseCode(200)
@@ -92,7 +96,9 @@ class DataCiteRetrofitServiceTest {
     @DisplayName("test creating a new doi")
     void testCreateDoi() throws IOException {
         // given
-        String response = IOUtils.getResourceAsString("draftDoiResponse.json");
+        String response = IOUtils.toString(
+                this.getClass().getResourceAsStream("/draftDoiResponse.json"),
+                StandardCharsets.UTF_8);
 
         server.enqueue(new MockResponse()
                 .setResponseCode(201)
