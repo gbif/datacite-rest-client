@@ -95,7 +95,7 @@
         <sonar.jacoco.reportPaths>${jacoco.ut.output.file},${jacoco.it.output.file}</sonar.jacoco.reportPaths>
         <sonar.exclusions>**/java-generated/**</sonar.exclusions>
         <sonar.cpd.exclusions>**/java-generated/**,**/ClientConfiguration.java</sonar.cpd.exclusions>
-        <sonar.coverage.exclusions>**/java-generated/**,**/ClientConfiguration.java,**/*Exception.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/java-generated/**,**/ClientConfiguration.java,**/*Exception.java,**/model/**</sonar.coverage.exclusions>
 
         <!-- Testing -->
         <junit4.version>4.12</junit4.version>
