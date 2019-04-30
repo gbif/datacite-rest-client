@@ -379,7 +379,7 @@
                                 <goal>shade</goal>
                             </goals>
                             <configuration>
-                                <shadedArtifactAttached>true</shadedArtifactAttached>
+                                <shadedArtifactAttached>false</shadedArtifactAttached>
                                 <transformers>
                                     <transformer
                                             implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
