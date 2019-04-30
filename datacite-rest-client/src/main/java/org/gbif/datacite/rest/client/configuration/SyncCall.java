@@ -41,7 +41,7 @@ public class SyncCall {
             if (response.isSuccessful() && (response.body() != null || response.code() == 204)) {
                 return response;
             }
-            LOG.debug("Service responded with an error {}", response);
+            LOG.error("Service responded with an error {}", response);
             throw new HttpException(response); // Propagates the failed response
         } catch (IOException ex) {
             LOG.error("Error executing call", ex);
