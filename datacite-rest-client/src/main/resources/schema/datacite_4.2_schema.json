@@ -224,7 +224,7 @@
         "type": "object",
         "properties": {
           "identifier": {"type": "string", "format": "doi"},
-          "identifierType": {"type":  "string", "enum":  ["DOI", "URL"]}
+          "identifierType": {"type":  "string", "enum":  ["DOI", "URL", "UUID"]}
         },
         "required": ["identifier", "identifierType"]
       },
