@@ -38,4 +38,27 @@ public enum EventType {
     public String getValue() {
         return value;
     }
+
+    /**
+     * Define which event type use to get defined state.
+     *
+     * @param state name
+     * @return required event type
+     */
+    public static EventType ofState(String state) {
+        EventType eventType;
+        switch (state) {
+            case "registered":
+                eventType = REGISTER;
+                break;
+            case "findable":
+                eventType = PUBLISH;
+                break;
+            case "draft":
+            default:
+                eventType = DRAFT;
+        }
+
+        return eventType;
+    }
 }

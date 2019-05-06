@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<resource xsi:schemaLocation="http://datacite.org/schema/kernel-3 http://schema.datacite.org/meta/kernel-3/metadata.xsd" xmlns="http://datacite.org/schema/kernel-3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <identifier identifierType="DOI">10.21373/ueml3f</identifier>
+    <creators>
+        <creator>
+            <creatorName>mpodolskiy</creatorName>
+            <nameIdentifier nameIdentifierScheme="GBIF" schemeURI="gbif.org">mpodolskiy</nameIdentifier>
+        </creator>
+    </creators>
+    <titles>
+        <title>Test DataCite 12 dataset</title>
+    </titles>
+    <publisher>GBIF Secretariat</publisher>
+    <publicationYear>2019</publicationYear>
+    <dates>
+        <date dateType="Updated">2019-05-02</date>
+    </dates>
+    <resourceType resourceTypeGeneral="Dataset">OCCURRENCE</resourceType>
+    <alternateIdentifiers>
+        <alternateIdentifier alternateIdentifierType="UUID">e48aefd2-ea41-4bfa-9c35-c5aae222f0de</alternateIdentifier>
+    </alternateIdentifiers>
+    <relatedIdentifiers/>
+    <rightsList>
+        <rights rightsURI="http://creativecommons.org/licenses/by/4.0/legalcode">Creative Commons Attribution (CC-BY) 4.0</rights>
+    </rightsList>
+</resource>

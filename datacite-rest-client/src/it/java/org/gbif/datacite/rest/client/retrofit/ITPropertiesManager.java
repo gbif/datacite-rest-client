@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 /**
  * Class for getting access to the IT's properties files.
  */
-public class ITPropertiesManager {
+class ITPropertiesManager {
 
     private static final String APPLICATION_PROPERTY_FILE = "it";
     private ResourceBundle bundle;
@@ -20,7 +20,7 @@ public class ITPropertiesManager {
      *
      * @return instance of ITPropertiesManager
      */
-    public static ITPropertiesManager getInstance() {
+    static ITPropertiesManager getInstance() {
         if (instance == null) {
             instance = new ITPropertiesManager();
         }
@@ -34,7 +34,7 @@ public class ITPropertiesManager {
      * @param key property key
      * @return property value
      */
-    public String get(String key) {
+    String get(String key) {
         return bundle.getString(key);
     }
 }

@@ -1,5 +1,6 @@
 package org.gbif.datacite.rest.client.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.github.jasminb.jsonapi.annotations.Id;
 import com.github.jasminb.jsonapi.annotations.Type;
 
@@ -11,6 +12,7 @@ import java.util.StringJoiner;
  * Annotated with {@link Type} for enabling JSON:API serialization.
  */
 @Type("dois")
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DoiSimplifiedModel {
 
     /**

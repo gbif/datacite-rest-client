@@ -51,6 +51,7 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <logging.interceptor.level>NONE</logging.interceptor.level>
+        <datacite.doi.prefix>10.21373</datacite.doi.prefix>
 
         <!-- Codemodel -->
         <codemodel.version>2.6</codemodel.version>
