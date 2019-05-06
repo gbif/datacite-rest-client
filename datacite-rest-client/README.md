@@ -55,6 +55,20 @@ An implementation of a Java client for the REST Datacite API.
  }
  ```
  
+ As an alternative to providing all metadata directly in JSON format, you can also provide metadata in other formats, in particular of course DataCite XML. You do this by base64-encoding the metadata and including them in the xml attribute. For example:
+ ```json
+ {
+  "data": {
+    "attributes": {
+      "event": "publish",
+      "doi": "10.21373/100",
+      "url": "https://schema.datacite.org/meta/kernel-4.0/index.html",
+      "xml": "<base64_encoded_xml_metadata>"
+  }
+}
+ ```
+ All the fields are required otherwise DOI will be created with a 'draft' state.
+ 
  Prefix 10.21373 should be used on the test environment.
  To perform some operations (POST, PUT, DELETE) additional rights are required - Client ID and password.
  
