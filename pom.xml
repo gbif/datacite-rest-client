@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.gbif.datacite</groupId>
     <artifactId>datacite-rest-client-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>DataCite Rest Client Parent</name>
     <description>DataCite Rest Client Parent</description>
@@ -17,7 +15,7 @@
         <connection>scm:git:git@github.com:gbif/datacite-rest-client.git</connection>
         <url>https://github.com/gbif/datacite-rest-client</url>
         <developerConnection>scm:git:git@github.com:gbif/datacite-rest-client.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>datacite-rest-client-parent-1.0</tag>
     </scm>
 
     <distributionManagement>
@@ -382,8 +380,7 @@
                             <configuration>
                                 <shadedArtifactAttached>false</shadedArtifactAttached>
                                 <transformers>
-                                    <transformer
-                                            implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
                                 </transformers>
                                 <relocations>
                                     <relocation>
