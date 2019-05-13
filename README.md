@@ -6,7 +6,7 @@ Initially it will provide the basic DOI operations described [here](https://supp
 # References
  - Datacite REST API Guide: [https://support.datacite.org/docs/api](https://support.datacite.org/docs/api) and [https://support.datacite.org/reference](https://support.datacite.org/reference).
  - Datacite supported metadata schemas: [https://schema.datacite.org/](https://schema.datacite.org/) and Github repo [https://github.com/datacite/schema](https://github.com/datacite/schema).
- - Datacite testing guide: [https://support.datacite.org/docs/testing-guide](https://support.datacite.org/docs/testing-guide)
+ - [Datacite testing guide](https://support.datacite.org/docs/testing-guide)
  - Datacite DOI Fabrica: [test](https://doi.test.datacite.org), [prod](https://doi.datacite.org)
  
 ## Modules
