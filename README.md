@@ -1,3 +1,7 @@
+[![Build Status](https://builds.gbif.org/job/datacite-rest-client/badge/icon?plastic)](https://builds.gbif.org/job/datacite-rest-client/badge/icon?plastic)
+[![Quality Gate Status](https://sonar.gbif.org/api/project_badges/measure?project=org.gbif.datacite%3Adatacite-rest-client-parent&metric=alert_status)](https://sonar.gbif.org/dashboard?id=id=org.gbif.datacite%3Adatacite-rest-client-parent) 
+[![Coverage](https://sonar.gbif.org/api/project_badges/measure?project=org.gbif.datacite%3Adatacite-rest-client-parent&metric=coverage)](https://sonar.gbif.org/dashboard?id=org.gbif.datacite%3Adatacite-rest-client-parent)
+
 # datacite-rest-client-parent
 
 This library provides a simple implmentation of a Java client for the REST Datacite API.
