@@ -4,7 +4,7 @@
 
 # datacite-rest-client-parent
 
-This library provides a simple implmentation of a Java client for the REST Datacite API.
+This library provides a simple implementation of a Java client for the REST Datacite API.
 Initially it will provide the basic DOI operations described [here](https://support.datacite.org/reference/dois-2) to perform CRUD and query operations on DOIs.
 
 # References
