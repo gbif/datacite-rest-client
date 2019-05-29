@@ -464,9 +464,10 @@
         "required": ["funderName"]
       },
       "uniqueItems": true
-    }
+    },
+    "xml": {"type": "string"},
+    "schemaVersion": {"type": "string"}
   },
-
   "required": [
     "creators",
     "titles",
