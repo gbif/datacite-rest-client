@@ -3,7 +3,6 @@ package org.gbif.datacite.rest.client.retrofit;
 import com.github.jasminb.jsonapi.JSONAPIDocument;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
@@ -52,20 +51,10 @@ public class DataCiteRetrofitClientPositiveSteps {
         response = client.getDoi(response.body().get().getId());
     }
 
-    @Then("^Response status should be \"([^\"]*)\"$")
-    public void checkResponseStatus(int status) {
-        assertEquals(status, response.code());
-    }
-
     @And("^State should be \"([^\"]*)\"$")
     public void checkState(String state) {
         assertNotNull(response.body());
         assertEquals(state, response.body().get().getState());
-    }
-
-    @Then("^Response status should be \"([^\"]*)\" \\(no content\\)$")
-    public void checkResponseStatusForDelete(int status) {
-        assertEquals(status, deleteResponse.code());
     }
 
     @When("^Perform a request to DataCite's GET DOI$")

@@ -466,7 +466,8 @@
       "uniqueItems": true
     },
     "xml": {"type": "string"},
-    "schemaVersion": {"type": "string"}
+    "schemaVersion": {"type": "string"},
+    "url": {"type":  "string"}
   },
   "required": [
     "creators",

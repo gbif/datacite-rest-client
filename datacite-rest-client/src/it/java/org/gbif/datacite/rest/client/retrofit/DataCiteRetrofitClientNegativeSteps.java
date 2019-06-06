@@ -2,12 +2,10 @@ package org.gbif.datacite.rest.client.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
 import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
 import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
-import retrofit2.HttpException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -18,6 +16,7 @@ import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommo
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.currentDoi;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.model;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.response;
+import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
@@ -106,19 +105,10 @@ public class DataCiteRetrofitClientNegativeSteps {
     @When("^Perform a request to DataCite's DELETE DOI with exception handling$")
     public void performDeleteRequest() {
         try {
-            client.deleteDoi(currentDoi);
+            deleteResponse = client.deleteDoi(currentDoi);
         } catch (Exception e) {
             actualException = e;
         }
     }
 
-    @Then("^Response should be \"([^\"]*)\"$")
-    public void checkResponse(String message) {
-        if (actualException != null) {
-            assertEquals(HttpException.class, actualException.getClass());
-            assertEquals(message, actualException.getMessage());
-        } else {
-            assertEquals(message, response.message());
-        }
-    }
 }

@@ -4,7 +4,6 @@ import org.gbif.datacite.rest.client.exception.DataCiteClientException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Call;
-import retrofit2.HttpException;
 import retrofit2.Response;
 
 import java.io.IOException;
@@ -29,20 +28,11 @@ public class SyncCall {
      * @param call to be executed
      * @param <T>  content of the response object
      * @return {@link Response} with content,
-     * throws an {@link HttpException} when response is bad:
-     * - response is successful, but body is null
-     * - response is successful, body is null but status is not 204
-     * - response is not successful
      * throws a {@link DataCiteClientException} when IOException was thrown from execute method
      */
     public static <T> Response<T> syncCallWithResponse(Call<T> call) {
         try {
-            Response<T> response = call.execute();
-            if (response.isSuccessful() && (response.body() != null || response.code() == 204)) {
-                return response;
-            }
-            LOG.error("Service responded with an error {}", response);
-            throw new HttpException(response); // Propagates the failed response
+            return call.execute();
         } catch (IOException ex) {
             LOG.error("Error executing call", ex);
             throw new DataCiteClientException(ex);

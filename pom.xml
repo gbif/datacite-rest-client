@@ -78,6 +78,7 @@
         <okio.version>2.0.0</okio.version>
 
         <!-- Plugins -->
+        <maven-clean-plugin.version>2.6.1</maven-clean-plugin.version>
         <maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M3</maven-failsafe-plugin.version>
@@ -337,6 +338,12 @@
                             <version>${error_prone_core.version}</version>
                         </dependency>
                     </dependencies>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${maven-clean-plugin.version}</version>
                 </plugin>
 
                 <plugin>

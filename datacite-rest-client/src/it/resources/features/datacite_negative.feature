@@ -12,34 +12,38 @@ Feature: Check negative cases using DataCite API
     Given Misconfigured rest client: wrong "<parameter>"
     And Model
     When Perform a request with a misconfigured client to DataCite's POST DOI with exception handling
-    Then Response should be "<message>"
+    Then Response message should be "<message>"
+    And Response code should be "<code>"
 
     Scenarios:
-      | parameter                   | message            |
-      | api (http instead of https) | OK                 |
-      | username                    | HTTP 404 Not Found |
-      | password                    | HTTP 404 Not Found |
-      | username and password       | HTTP 404 Not Found |
+      | parameter                   | message   | code |
+      | api (http instead of https) | OK        | 200  |
+      | username                    | Not Found | 404  |
+      | password                    | Not Found | 404  |
+      | username and password       | Not Found | 404  |
 
   Scenario Template: Creation a DOI with wrong parameter <field>: <description>
     Given Model with wrong "<field>"
     When Perform a request to DataCite's POST DOI with exception handling
-    Then Response should be "<message>"
+    Then Response message should be "<message>"
+    And Response code should be "<code>"
 
     Scenarios:
-      | field    | description               | message                       |
-      | URL      | invalid URL               | HTTP 422 Unprocessable Entity |
-      | metadata | random base64 encoded xml | Created                       |
-      | event    | random invalid event      | Created                       |
-      | doi      | invalid prefix            | HTTP 403 Forbidden            |
+      | field    | description               | message              | code |
+      | URL      | invalid URL               | Unprocessable Entity | 422  |
+      | metadata | random base64 encoded xml | Created              | 201  |
+      | event    | random invalid event      | Created              | 201  |
+      | doi      | invalid prefix            | Forbidden            | 403  |
 
   Scenario: Findable DOI can't be deleted
     Given An existing DOI with state "findable"
     When Perform a request to DataCite's DELETE DOI with exception handling
-    Then Response should be "HTTP 405 Method Not Allowed"
+    Then Response message (delete) should be "Method Not Allowed"
+    And Response code (delete) should be "405"
 
   Scenario: Try create a DOI which already exists should throw an exception
     Given An existing DOI with state "findable"
     And Model with this DOI
     When Perform a request to DataCite's POST DOI with exception handling
-    Then Response should be "HTTP 422 Unprocessable Entity"
+    Then Response message should be "Unprocessable Entity"
+    And Response code should be "422"

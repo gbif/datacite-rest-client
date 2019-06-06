@@ -1,7 +1,9 @@
 package org.gbif.datacite.rest.client.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
@@ -61,5 +63,25 @@ public class DataCiteRetrofitClientCommonSteps {
         assertNotNull(response.body());
         assertEquals(state, response.body().get().getState());
         model = new DoiSimplifiedModel();
+    }
+
+    @Then("^Response message should be \"([^\"]*)\"$")
+    public void checkResponseMessage(String message) {
+        assertEquals(message, response.message());
+    }
+
+    @And("^Response code should be \"([^\"]*)\"$")
+    public void checkResponseCode(int code) {
+        assertEquals(code, response.code());
+    }
+
+    @Then("^Response message \\(delete\\) should be \"([^\"]*)\"$")
+    public void checkResponseMessageDelete(String message) {
+        assertEquals(message, deleteResponse.message());
+    }
+
+    @And("^Response code \\(delete\\) should be \"([^\"]*)\"$")
+    public void checkResponseCodeDelete(int code) {
+        assertEquals(code, deleteResponse.code());
     }
 }

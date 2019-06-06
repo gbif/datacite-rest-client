@@ -1,5 +1,7 @@
 package org.gbif.datacite.rest.client.configuration;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,25 +14,41 @@ public class ClientConfiguration implements Serializable {
 
     private static final long serialVersionUID = 7778374827110638452L;
 
-    private final String baseApiUrl;
+    @JsonProperty("baseApiUrl")
+    private String baseApiUrl;
 
-    private final Long timeOut;
+    @JsonProperty("timeOut")
+    private Long timeOut;
 
-    private final Long fileCacheMaxSizeMb;
+    @JsonProperty("fileCacheMaxSizeMb")
+    private Long fileCacheMaxSizeMb;
 
-    private final String user;
+    @JsonProperty("username")
+    private String user;
 
-    private final String password;
+    @JsonProperty("password")
+    private String password;
+
+    /**
+     * Default constructor
+     */
+    public ClientConfiguration() {
+    }
 
     /**
      * Args constructor.
-     * @param baseApiUrl service URL
-     * @param timeOut timeout time in seconds
+     *
+     * @param baseApiUrl         service URL
+     * @param timeOut            timeout time in seconds
      * @param fileCacheMaxSizeMb cache file size in MB
-     * @param user user
-     * @param password password
+     * @param user               user
+     * @param password           password
      */
-    private ClientConfiguration(String baseApiUrl, long timeOut, long fileCacheMaxSizeMb, String user, String password) {
+    private ClientConfiguration(String baseApiUrl,
+                                long timeOut,
+                                long fileCacheMaxSizeMb,
+                                String user,
+                                String password) {
         this.baseApiUrl = baseApiUrl;
         this.timeOut = timeOut;
         this.fileCacheMaxSizeMb = fileCacheMaxSizeMb;
@@ -80,6 +98,7 @@ public class ClientConfiguration implements Serializable {
 
     /**
      * Creates a new {@link Builder} instance.
+     *
      * @return a new builder
      */
     public static Builder builder() {
