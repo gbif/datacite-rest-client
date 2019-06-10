@@ -18,8 +18,8 @@ import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommo
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.model;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.response;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Logic class for {@link DataCiteRetrofitClientIT} for positive cases.

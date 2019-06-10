@@ -6,11 +6,10 @@ import com.github.jasminb.jsonapi.annotations.Type;
 import com.sun.codemodel.JAnnotationUse;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JFieldVar;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -20,8 +19,8 @@ import static org.mockito.Mockito.when;
  * Tests {@link JsonApiAnnotator} class.
  * Should check all the jsonapi-converter annotations were added.
  */
-@ExtendWith(MockitoExtension.class)
-class JsonApiAnnotatorTest {
+@RunWith(MockitoJUnitRunner.class)
+public class JsonApiAnnotatorTest {
 
     @Mock
     JFieldVar fieldMock;
@@ -35,9 +34,9 @@ class JsonApiAnnotatorTest {
     @Mock
     JsonNode propertyNodeMock;
 
-    @DisplayName("Class with property 'doi' should be annotated with the annotation 'Type'")
+    // Class with property 'doi' should be annotated with the annotation 'Type'
     @Test
-    void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() {
+    public void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() {
 
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
@@ -51,9 +50,9 @@ class JsonApiAnnotatorTest {
         verify(classMock, times(1)).annotate(Type.class);
     }
 
-    @DisplayName("Property 'id' should be annotated with the annotation 'Id'")
+    // Property 'id' should be annotated with the annotation 'Id'
     @Test
-    void propertyIdShouldBeAnnotatedWithAnnotationId() {
+    public void propertyIdShouldBeAnnotatedWithAnnotationId() {
 
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();

@@ -10,10 +10,9 @@ import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -22,19 +21,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Tests {@link DataCiteRetrofitClient} methods.
  */
-@DisplayName("Test DataCiteRetrofitService methods")
-class DataCiteRetrofitServiceTest {
+public class DataCiteRetrofitServiceTest {
     private static MockWebServer server;
     private static DataCiteRetrofitClient service;
 
-    @BeforeAll
-    static void setup() throws IOException {
+    @BeforeClass
+    public static void setup() throws IOException {
         // Setup server
         server = new MockWebServer();
         server.start();
@@ -62,14 +60,14 @@ class DataCiteRetrofitServiceTest {
         service = retrofit.create(DataCiteRetrofitClient.class);
     }
 
-    @AfterAll
-    static void destroy() throws IOException {
+    @AfterClass
+    public static void destroy() throws IOException {
         server.shutdown();
     }
 
+    // Test getting a single doi
     @Test
-    @DisplayName("test getting a single doi")
-    void testGetDoi() throws Exception {
+    public void testGetDoi() throws Exception {
         // given
         String response = IOUtils.toString(
                 this.getClass().getResourceAsStream("/draftDoiResponse.json"),
@@ -92,9 +90,9 @@ class DataCiteRetrofitServiceTest {
         assertEquals("10.21373/110", datacite42Schema.getDoi());
     }
 
+    // Test creating a new doi
     @Test
-    @DisplayName("test creating a new doi")
-    void testCreateDoi() throws IOException {
+    public void testCreateDoi() throws IOException {
         // given
         String response = IOUtils.toString(
                 this.getClass().getResourceAsStream("/draftDoiResponse.json"),

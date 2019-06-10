@@ -14,10 +14,9 @@ import java.util.Base64;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.DOI_PREFIX;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.client;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.currentDoi;
+import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.model;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.response;
-import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Logic class for {@link DataCiteRetrofitClientIT} for negative cases.
