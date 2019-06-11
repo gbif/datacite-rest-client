@@ -27,7 +27,6 @@ public class DataCiteRetrofitClientNegativeSteps {
     public static final String DOI_WITH_INCORRECT_PREFIX = "10.2222/111";
 
     private DataCiteRetrofitSyncClient wrongClient;
-    private Exception actualException;
 
     @Given("^Misconfigured rest client: wrong \"([^\"]*)\"$")
     public void restClientWithWrongCredentials(String param) {
@@ -83,31 +82,19 @@ public class DataCiteRetrofitClientNegativeSteps {
         model.setId(currentDoi);
     }
 
-    @When("^Perform a request with a misconfigured client to DataCite's POST DOI with exception handling$")
+    @When("^Perform a request with a misconfigured client to DataCite's POST DOI$")
     public void performPostRequestWithWrongCredentials() {
-        try {
-            response = wrongClient.createDoi(new JSONAPIDocument<>(model));
-        } catch (Exception e) {
-            actualException = e;
-        }
+        response = wrongClient.createDoi(new JSONAPIDocument<>(model));
     }
 
-    @When("^Perform a request to DataCite's POST DOI with exception handling$")
-    public void performPostRequest() {
-        try {
-            response = client.createDoi(new JSONAPIDocument<>(model));
-        } catch (Exception e) {
-            actualException = e;
-        }
-    }
-
-    @When("^Perform a request to DataCite's DELETE DOI with exception handling$")
-    public void performDeleteRequest() {
-        try {
-            deleteResponse = client.deleteDoi(currentDoi);
-        } catch (Exception e) {
-            actualException = e;
-        }
-    }
+//    @When("^Perform a request to DataCite's POST DOI with exception handling$")
+//    public void performPostRequest() {
+//        response = client.createDoi(new JSONAPIDocument<>(model));
+//    }
+//
+//    @When("^Perform a request to DataCite's DELETE DOI with exception handling$")
+//    public void performDeleteRequest() {
+//        deleteResponse = client.deleteDoi(currentDoi);
+//    }
 
 }

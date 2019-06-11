@@ -11,7 +11,7 @@ Feature: Check negative cases using DataCite API
   Scenario Template: Creation a DOI with wrong credentials should throw an exception
     Given Misconfigured rest client: wrong "<parameter>"
     And Model
-    When Perform a request with a misconfigured client to DataCite's POST DOI with exception handling
+    When Perform a request with a misconfigured client to DataCite's POST DOI
     Then Response message should be "<message>"
     And Response code should be "<code>"
 
@@ -24,7 +24,7 @@ Feature: Check negative cases using DataCite API
 
   Scenario Template: Creation a DOI with wrong parameter <field>: <description>
     Given Model with wrong "<field>"
-    When Perform a request to DataCite's POST DOI with exception handling
+    When Perform a request to DataCite's POST DOI
     Then Response message should be "<message>"
     And Response code should be "<code>"
 
@@ -37,13 +37,13 @@ Feature: Check negative cases using DataCite API
 
   Scenario: Findable DOI can't be deleted
     Given An existing DOI with state "findable"
-    When Perform a request to DataCite's DELETE DOI with exception handling
+    When Perform a request to DataCite's DELETE DOI
     Then Response message (delete) should be "Method Not Allowed"
     And Response code (delete) should be "405"
 
   Scenario: Try create a DOI which already exists should throw an exception
     Given An existing DOI with state "findable"
     And Model with this DOI
-    When Perform a request to DataCite's POST DOI with exception handling
+    When Perform a request to DataCite's POST DOI
     Then Response message should be "Unprocessable Entity"
     And Response code should be "422"
