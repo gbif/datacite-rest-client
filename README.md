@@ -31,8 +31,6 @@ The implementation of this library will depend on the following commonly used li
 ## Profiles
 - **coverage** - enable unit tests coverage calculating with jacoco-maven-plugin
 
-- **dev** - includes specific dev properties and configuration
-
 - **integration-tests** - for launching integration tests. 
 Includes maven-failsafe-plugin with configurations 
 and code coverage by integration tests with jacoco-maven-plugiin
