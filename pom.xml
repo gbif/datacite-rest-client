@@ -11,7 +11,7 @@
     <groupId>org.gbif.datacite</groupId>
     <artifactId>datacite-rest-client-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
 
     <name>DataCite Rest Client Parent</name>
     <description>DataCite Rest Client Parent</description>
@@ -21,7 +21,7 @@
         <connection>scm:git:git@github.com:gbif/datacite-rest-client.git</connection>
         <url>https://github.com/gbif/datacite-rest-client</url>
         <developerConnection>scm:git:git@github.com:gbif/datacite-rest-client.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>datacite-rest-client-parent-1.4</tag>
     </scm>
 
     <distributionManagement>
