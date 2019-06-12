@@ -27,12 +27,5 @@ The implementation of this library will depend on the following commonly used li
  - Testing: [JUnit 5](https://junit.org/junit5/), 
  [Mockito](https://site.mockito.org/), 
  [Cucumber](https://docs.cucumber.io/).
- 
-## Profiles
-- **coverage** - enable unit tests coverage calculating with jacoco-maven-plugin
-
-- **integration-tests** - for launching integration tests. 
-Includes maven-failsafe-plugin with configurations 
-and code coverage by integration tests with jacoco-maven-plugiin
 
 See [pom.xml](pom.xml) for more details.
