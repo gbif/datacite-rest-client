@@ -29,6 +29,17 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
     }
 
     /**
+     * Performs a synchronous call to the DataCite service's get (with XML metadata content).
+     *
+     * @param doi identifier
+     * @return doi XML metadata wrapped by {@link Response}
+     */
+    @Override
+    public Response<String> getMetadata(String doi) {
+        return syncCallWithResponse(dataCiteRetrofitService.getMetadata(doi));
+    }
+
+    /**
      * Performs a synchronous call to the DataCite service's get.
      *
      * @return a list of dois wrapped by {@link Datacite42Schema}

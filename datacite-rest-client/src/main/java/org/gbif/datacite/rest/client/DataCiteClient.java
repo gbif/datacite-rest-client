@@ -50,4 +50,12 @@ public interface DataCiteClient {
      * @return {@link Response} with empty body
      */
     Response<Void> deleteDoi(String doi);
+
+    /**
+     * Get doi XML metadata as String.
+     *
+     * @param doi identifier
+     * @return doi XML metadata wrapped by {@link Response}
+     */
+    Response<String> getMetadata(String doi);
 }

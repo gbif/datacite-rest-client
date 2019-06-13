@@ -13,13 +13,16 @@ import java.util.Base64;
 
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.DOI_PREFIX;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.TEST_URL;
+import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.actualMetadata;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.client;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.currentDoi;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.model;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.response;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Logic class for {@link DataCiteRetrofitClientIT} for positive cases.
@@ -55,6 +58,21 @@ public class DataCiteRetrofitClientPositiveSteps {
     public void checkState(String state) {
         assertNotNull(response.body());
         assertEquals(state, response.body().get().getState());
+    }
+
+    @When("^Perform a request to DataCite's GET metadata by id$")
+    public void performGetMetadata() {
+        assertNotNull(response.body());
+        actualMetadata = client.getMetadata(response.body().get().getId()).body();
+    }
+
+    @And("^Metadata should be valid$")
+    public void checkMetadataValidity() {
+        assertNotNull(response.body());
+        assertNotNull(actualMetadata);
+        assertFalse(actualMetadata.trim().isEmpty());
+        assertTrue(actualMetadata.contains("<creatorName nameType=\"Personal\">Miller, Elizabeth</creatorName>"));
+        assertTrue(actualMetadata.contains("<publicationYear>2014</publicationYear>"));
     }
 
     @When("^Perform a request to DataCite's GET DOI$")

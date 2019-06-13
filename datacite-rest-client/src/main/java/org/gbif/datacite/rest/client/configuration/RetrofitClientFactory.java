@@ -14,6 +14,7 @@ import org.gbif.datacite.rest.client.util.PropertiesManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,6 +86,7 @@ public final class RetrofitClientFactory {
                 .client(createClient(clientConfiguration))
                 .baseUrl(clientConfiguration.getBaseApiUrl())
                 .addConverterFactory(jsonapiConverterFactory)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .validateEagerly(true)
                 .build()
                 .create(serviceClass);

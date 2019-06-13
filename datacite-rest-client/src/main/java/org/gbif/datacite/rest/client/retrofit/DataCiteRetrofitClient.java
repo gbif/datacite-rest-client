@@ -19,7 +19,7 @@ import retrofit2.http.Path;
 public interface DataCiteRetrofitClient {
 
     /**
-     * Return a list of dois.
+     * Get a list of dois.
      *
      * @return a list of dois
      */
@@ -28,7 +28,7 @@ public interface DataCiteRetrofitClient {
     Call<JSONAPIDocument<Datacite42Schema>> get();
 
     /**
-     * Represents a DOI and provides access to metadata attributes.
+     * Create doi with body.
      *
      * @param body data
      * @return HTTP 201
@@ -38,7 +38,7 @@ public interface DataCiteRetrofitClient {
     Call<JSONAPIDocument<Datacite42Schema>> create(@Body JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
-     * Returns a doi.
+     * Get doi by id.
      *
      * @param doi identifier
      * @return a doi
@@ -48,18 +48,18 @@ public interface DataCiteRetrofitClient {
     Call<JSONAPIDocument<Datacite42Schema>> get(@Path("id") String doi);
 
     /**
-     * Update a doi.
+     * Update doi with body by id.
      *
      * @param doi  identifier
      * @param body data
-     * @return HTTP 200
+     * @return an updated doi
      */
     @Headers({"Accept: application/vnd.api+json", "Content-Type: application/vnd.api+json"})
     @PUT("/dois/{id}")
     Call<JSONAPIDocument<Datacite42Schema>> update(@Path("id") String doi, @Body JSONAPIDocument<DoiSimplifiedModel> body);
 
     /**
-     * Delete a doi.
+     * Delete doi by id.
      *
      * @param doi identifier
      * @return HTTP 204
@@ -68,4 +68,13 @@ public interface DataCiteRetrofitClient {
     @DELETE("/dois/{id}")
     Call<Void> delete(@Path("id") String doi);
 
+    /**
+     * Get metadata by doi.
+     *
+     * @param doi identifier
+     * @return doi XML metadata
+     */
+    @Headers({"Accept: application/vnd.datacite.datacite+xml"})
+    @GET("/dois/{id}")
+    Call<String> getMetadata(@Path("id") String doi);
 }

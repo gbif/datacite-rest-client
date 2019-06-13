@@ -12,6 +12,9 @@ Feature: Check DataCite API positive cases
     Then Response code should be "201"
     When Perform a request to DataCite's GET DOI by id
     Then Response code should be "200"
+    When Perform a request to DataCite's GET metadata by id
+    Then Response code should be "200"
+    And Metadata should be valid
     When Perform a request to DataCite's DELETE DOI
     Then Response code (delete) should be "204"
 

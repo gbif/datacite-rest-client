@@ -153,6 +153,16 @@
                 <version>${retrofit.version}</version>
             </dependency>
             <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>converter-simplexml</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>converter-scalars</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
@@ -457,7 +467,7 @@
                             </configuration>
                         </execution>
                         <execution>
-                            <id>post-integration-test</id>
+                            <id>report-it-coverage</id>
                             <phase>post-integration-test</phase>
                             <goals>
                                 <goal>report-integration</goal>

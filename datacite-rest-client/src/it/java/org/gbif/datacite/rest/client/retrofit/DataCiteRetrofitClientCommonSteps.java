@@ -31,6 +31,7 @@ public class DataCiteRetrofitClientCommonSteps {
     public static Response<Void> deleteResponse;
     public static DoiSimplifiedModel model;
     public static String currentDoi;
+    public static String actualMetadata;
 
     @Given("^Rest client$")
     public void restClient() {
