@@ -114,6 +114,7 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
         return syncCallWithResponse(dataCiteRetrofitService.delete(doi));
     }
 
+    @SuppressWarnings("squid:S2142")
     private void sleep(long millis) {
         try {
             Thread.sleep(millis);
