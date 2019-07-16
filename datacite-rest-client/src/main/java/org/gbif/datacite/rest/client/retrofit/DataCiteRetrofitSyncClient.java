@@ -6,6 +6,8 @@ import org.gbif.datacite.rest.client.DataCiteClient;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
 import org.gbif.datacite.rest.client.configuration.RetrofitClientFactory;
 import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Response;
 
 import static org.gbif.datacite.rest.client.configuration.SyncCall.syncCallWithResponse;
@@ -15,6 +17,10 @@ import static org.gbif.datacite.rest.client.configuration.SyncCall.syncCallWithR
  * It wraps a Retrofit client to perform the actual calls.
  */
 public class DataCiteRetrofitSyncClient implements DataCiteClient {
+
+    private static final Logger LOG = LoggerFactory.getLogger(DataCiteRetrofitSyncClient.class);
+
+    private static final int RETRY = 5;
 
     private final DataCiteRetrofitClient dataCiteRetrofitService;
 
@@ -57,7 +63,21 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
      */
     @Override
     public Response<JSONAPIDocument<Datacite42Schema>> createDoi(JSONAPIDocument<DoiSimplifiedModel> body) {
-        return syncCallWithResponse(dataCiteRetrofitService.create(body));
+        final Response<JSONAPIDocument<Datacite42Schema>> response = syncCallWithResponse(dataCiteRetrofitService.create(body));
+
+        // DataCite can return 201 but the DOI may not created yet
+        Response<JSONAPIDocument<Datacite42Schema>> anotherResponse;
+
+        for (long i = 0; i < RETRY; i++) {
+            anotherResponse = getDoi(body.get().getDoi());
+            if (anotherResponse.code() == 404) {
+                sleep(500 + i * 1000);
+            } else {
+                break;
+            }
+        }
+
+        return response;
     }
 
     /**
@@ -92,5 +112,13 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
     @Override
     public Response<Void> deleteDoi(String doi) {
         return syncCallWithResponse(dataCiteRetrofitService.delete(doi));
+    }
+
+    private void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            LOG.info("Interrupted");
+        }
     }
 }
