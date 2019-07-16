@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         strict = true,
         features = {
                 "classpath:features/datacite_positive.feature",
-//                "classpath:features/datacite_negative.feature"
+                "classpath:features/datacite_negative.feature"
         },
         glue = "org.gbif.datacite.rest.client.retrofit",
         plugin = "pretty"
