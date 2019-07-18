@@ -363,6 +363,11 @@
                     <artifactId>maven-shade-plugin</artifactId>
                     <version>${maven-shade-plugin.version}</version>
                     <configuration>
+                        <artifactSet>
+                            <excludes>
+                                <exclude>ch.qos.logback:*</exclude>
+                            </excludes>
+                        </artifactSet>
                         <createDependencyReducedPom>false</createDependencyReducedPom>
                     </configuration>
                     <executions>
