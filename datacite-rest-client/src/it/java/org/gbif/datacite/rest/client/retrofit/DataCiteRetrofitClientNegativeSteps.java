@@ -12,9 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.DOI_PREFIX;
-import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.client;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.currentDoi;
-import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.deleteResponse;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.model;
 import static org.gbif.datacite.rest.client.retrofit.DataCiteRetrofitClientCommonSteps.response;
 
@@ -45,6 +43,7 @@ public class DataCiteRetrofitClientNegativeSteps {
     @Given("^Model$")
     public void model() {
         model = new DoiSimplifiedModel();
+        model.setDoi("wrong_doi");
     }
 
     @Given("^Model with wrong \"([^\"]*)\"$")
@@ -86,15 +85,5 @@ public class DataCiteRetrofitClientNegativeSteps {
     public void performPostRequestWithWrongCredentials() {
         response = wrongClient.createDoi(new JSONAPIDocument<>(model));
     }
-
-//    @When("^Perform a request to DataCite's POST DOI with exception handling$")
-//    public void performPostRequest() {
-//        response = client.createDoi(new JSONAPIDocument<>(model));
-//    }
-//
-//    @When("^Perform a request to DataCite's DELETE DOI with exception handling$")
-//    public void performDeleteRequest() {
-//        deleteResponse = client.deleteDoi(currentDoi);
-//    }
 
 }

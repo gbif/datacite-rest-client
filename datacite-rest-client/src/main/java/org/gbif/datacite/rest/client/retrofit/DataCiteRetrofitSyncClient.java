@@ -20,7 +20,7 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
 
     private static final Logger LOG = LoggerFactory.getLogger(DataCiteRetrofitSyncClient.class);
 
-    private static final int RETRY = 5;
+    private static final int RETRY = 3;
 
     private final DataCiteRetrofitClient dataCiteRetrofitService;
 
