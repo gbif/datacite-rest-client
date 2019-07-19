@@ -12,6 +12,7 @@ Initially it will provide the basic DOI operations described [here](https://supp
  - Datacite supported metadata schemas: [https://schema.datacite.org/](https://schema.datacite.org/) and Github repo [https://github.com/datacite/schema](https://github.com/datacite/schema).
  - [Datacite testing guide](https://support.datacite.org/docs/testing-guide)
  - Datacite DOI Fabrica: [test](https://doi.test.datacite.org), [prod](https://doi.datacite.org)
+ - [Digital object identifier (DOI)](https://en.wikipedia.org/wiki/Digital_object_identifier)
  
 ## Modules
  Consists of two modules:
