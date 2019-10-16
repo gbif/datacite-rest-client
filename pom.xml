@@ -96,6 +96,7 @@
         <error_prone_core.version>2.3.3</error_prone_core.version>
 
         <!-- Sonar -->
+        <sonar.projectName>GBIF DataCite Rest Client</sonar.projectName>
         <sonar.language>java</sonar.language>
         <sonar.sources>src/main/java</sonar.sources>
         <sonar.jacoco.reportPaths>${jacoco.merged.output.file}</sonar.jacoco.reportPaths>
@@ -526,4 +527,17 @@
             </plugins>
         </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>local-sonar</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.host.url>http://localhost:9000</sonar.host.url>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

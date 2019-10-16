@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 /**
  * Class for getting access to the application properties files.
  */
+// TODO: 03/10/2019 Consider using PropertiesUtils
 public class PropertiesManager {
 
     private static final String APPLICATION_PROPERTY_FILE = "app";
