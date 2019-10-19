@@ -42,7 +42,7 @@ public class DataCiteRetrofitClientPositiveSteps {
         model.setUrl(TEST_URL);
     }
 
-    @And("^event type is \"([^\"]*)\"$")
+    @And("^event type is (DRAFT|PUBLISH|HIDE|REGISTER)$")
     public void setEventType(EventType eventType) {
         model.setEvent(eventType.getValue());
     }
