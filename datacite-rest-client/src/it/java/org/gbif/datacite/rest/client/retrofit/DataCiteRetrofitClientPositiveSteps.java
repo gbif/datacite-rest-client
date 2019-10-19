@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class DataCiteRetrofitClientPositiveSteps {
 
-    @Given("^Model with provided XML metadata$")
+    @Given("Model with provided XML metadata")
     public void modelWithXmlMetadata() throws Exception {
         String doi = TestDoiProvider.get(DOI_PREFIX);
         model = new DoiSimplifiedModel();
@@ -42,31 +42,31 @@ public class DataCiteRetrofitClientPositiveSteps {
         model.setUrl(TEST_URL);
     }
 
-    @And("^event type is \"([^\"]*)\"$")
+    @And("event type is {string}")
     public void setEventType(EventType eventType) {
         model.setEvent(eventType.getValue());
     }
 
 
-    @When("^Perform a request to DataCite's GET DOI by id$")
+    @When("Perform a request to DataCite's GET DOI by id$")
     public void performGetSingleDoi() {
         assertNotNull(response.body());
         response = client.getDoi(response.body().get().getId());
     }
 
-    @And("^State should be \"([^\"]*)\"$")
+    @And("State should be {string}")
     public void checkState(String state) {
         assertNotNull(response.body());
         assertEquals(state, response.body().get().getState());
     }
 
-    @When("^Perform a request to DataCite's GET metadata by id$")
+    @When("Perform a request to DataCite's GET metadata by id")
     public void performGetMetadata() {
         assertNotNull(response.body());
         actualMetadata = client.getMetadata(response.body().get().getId()).body();
     }
 
-    @And("^Metadata should be valid$")
+    @And("Metadata should be valid")
     public void checkMetadataValidity() {
         assertNotNull(response.body());
         assertNotNull(actualMetadata);
@@ -75,26 +75,26 @@ public class DataCiteRetrofitClientPositiveSteps {
         assertTrue(actualMetadata.contains("<publicationYear>2014</publicationYear>"));
     }
 
-    @When("^Perform a request to DataCite's GET DOI$")
+    @When("Perform a request to DataCite's GET DOI")
     public void performGetDoiList() {
         response = client.getDois();
     }
 
-    @When("^Perform a request to DataCite's POST DOI$")
+    @When("Perform a request to DataCite's POST DOI")
     public void performCreateDoi() {
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 
         response = client.createDoi(jsonApi);
     }
 
-    @When("^Perform a request to DataCite's PUT DOI$")
+    @When("Perform a request to DataCite's PUT DOI")
     public void performUpdateDoi() {
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
 
         response = client.updateDoi(currentDoi, jsonApi);
     }
 
-    @When("^Perform a request to DataCite's DELETE DOI$")
+    @When("Perform a request to DataCite's DELETE DOI")
     public void performDeleteDoi() {
         assertNotNull(response.body());
         deleteResponse = client.deleteDoi(response.body().get().getDoi());

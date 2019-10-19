@@ -13,7 +13,7 @@ Feature: Check negative cases using DataCite API
     And Model
     When Perform a request with a misconfigured client to DataCite's POST DOI
     Then Response message should be "<message>"
-    And Response code should be "<code>"
+    And Response code should be <code>
 
     Scenarios:
       | parameter                   | message   | code |
@@ -26,7 +26,7 @@ Feature: Check negative cases using DataCite API
     Given Model with wrong "<field>"
     When Perform a request to DataCite's POST DOI
     Then Response message should be "<message>"
-    And Response code should be "<code>"
+    And Response code should be <code>
 
     Scenarios:
       | field    | description               | message              | code |
@@ -39,11 +39,11 @@ Feature: Check negative cases using DataCite API
     Given An existing DOI with state "findable"
     When Perform a request to DataCite's DELETE DOI
     Then Response message (delete) should be "Method Not Allowed"
-    And Response code (delete) should be "405"
+    And Response code (delete) should be 405
 
   Scenario: Try create a DOI which already exists should throw an exception
     Given An existing DOI with state "findable"
     And Model with this DOI
     When Perform a request to DataCite's POST DOI
     Then Response message should be "Unprocessable Entity"
-    And Response code should be "422"
+    And Response code should be 422

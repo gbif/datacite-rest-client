@@ -33,7 +33,7 @@ public class DataCiteRetrofitClientCommonSteps {
     public static String currentDoi;
     public static String actualMetadata;
 
-    @Given("^Rest client$")
+    @Given("Rest client")
     public void restClient() {
         ClientConfiguration clientConfiguration = ClientConfiguration
                 .builder()
@@ -45,7 +45,7 @@ public class DataCiteRetrofitClientCommonSteps {
         client = new DataCiteRetrofitSyncClient(clientConfiguration);
     }
 
-    @Given("^An existing DOI with state \"([^\"]*)\"$")
+    @Given("An existing DOI with state {string}")
     public void createDoiWithState(String state) throws IOException {
         currentDoi = TestDoiProvider.get(DOI_PREFIX);
         model = new DoiSimplifiedModel();
@@ -66,22 +66,22 @@ public class DataCiteRetrofitClientCommonSteps {
         model = new DoiSimplifiedModel();
     }
 
-    @Then("^Response message should be \"([^\"]*)\"$")
+    @Then("Response message should be {string}")
     public void checkResponseMessage(String message) {
         assertEquals(message, response.message());
     }
 
-    @And("^Response code should be \"([^\"]*)\"$")
+    @And("Response code should be {int}")
     public void checkResponseCode(int code) {
         assertEquals(code, response.code());
     }
 
-    @Then("^Response message \\(delete\\) should be \"([^\"]*)\"$")
+    @Then("Response message \\(delete) should be {string}")
     public void checkResponseMessageDelete(String message) {
         assertEquals(message, deleteResponse.message());
     }
 
-    @And("^Response code \\(delete\\) should be \"([^\"]*)\"$")
+    @And("Response code \\(delete) should be {int}")
     public void checkResponseCodeDelete(int code) {
         assertEquals(code, deleteResponse.code());
     }
