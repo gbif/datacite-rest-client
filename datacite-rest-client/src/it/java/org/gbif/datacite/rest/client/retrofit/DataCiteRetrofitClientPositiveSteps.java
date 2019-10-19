@@ -42,11 +42,10 @@ public class DataCiteRetrofitClientPositiveSteps {
         model.setUrl(TEST_URL);
     }
 
-    @And("event type is {string}")
+    @And("^event type is \"([^\"]*)\"$")
     public void setEventType(EventType eventType) {
         model.setEvent(eventType.getValue());
     }
-
 
     @When("Perform a request to DataCite's GET DOI by id$")
     public void performGetSingleDoi() {

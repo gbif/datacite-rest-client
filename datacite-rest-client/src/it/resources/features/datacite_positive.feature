@@ -1,5 +1,5 @@
 @DataCitePositive
-Feature: Check DataCite API positive cases
+Feature: DataCite API positive cases
   Try to check all the CRUD operations of DataCite API. Positive cases.
   We have a REST client with all the needed operations.
 

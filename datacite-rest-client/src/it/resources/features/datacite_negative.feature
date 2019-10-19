@@ -1,5 +1,5 @@
 @DataCiteNegative
-Feature: Check negative cases using DataCite API
+Feature: DataCite API negative cases
   Trying to call methods in a wrong way.
   We have a REST client with all the needed operations.
 
