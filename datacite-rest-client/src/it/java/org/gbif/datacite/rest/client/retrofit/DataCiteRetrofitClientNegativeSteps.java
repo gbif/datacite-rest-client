@@ -1,8 +1,8 @@
 package org.gbif.datacite.rest.client.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
 import org.gbif.datacite.rest.client.model.DoiSimplifiedModel;

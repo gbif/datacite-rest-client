@@ -1,9 +1,9 @@
 package org.gbif.datacite.rest.client.retrofit;
 
 import com.github.jasminb.jsonapi.JSONAPIDocument;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.apache.commons.io.IOUtils;
 import org.gbif.datacite.model.json.Datacite42Schema;
 import org.gbif.datacite.rest.client.configuration.ClientConfiguration;
