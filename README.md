@@ -2,12 +2,12 @@
 [![Quality Gate Status](https://sonar.gbif.org/api/project_badges/measure?project=org.gbif.datacite%3Adatacite-rest-client-parent&metric=alert_status)](https://sonar.gbif.org/dashboard?id=org.gbif.datacite%3Adatacite-rest-client-parent) 
 [![Coverage](https://sonar.gbif.org/api/project_badges/measure?project=org.gbif.datacite%3Adatacite-rest-client-parent&metric=coverage)](https://sonar.gbif.org/dashboard?id=org.gbif.datacite%3Adatacite-rest-client-parent)
 
-# datacite-rest-client-parent
+# DataCite rest client
 
 This library provides a simple implementation of a Java client for the REST Datacite API.
 Initially it will provide the basic DOI operations described [here](https://support.datacite.org/reference/dois-2) to perform CRUD and query operations on DOIs.
 
-# References
+## References
  - Datacite REST API Guide: [https://support.datacite.org/docs/api](https://support.datacite.org/docs/api) and [https://support.datacite.org/reference](https://support.datacite.org/reference).
  - Datacite supported metadata schemas: [https://schema.datacite.org/](https://schema.datacite.org/) and Github repo [https://github.com/datacite/schema](https://github.com/datacite/schema).
  - [Datacite testing guide](https://support.datacite.org/docs/testing-guide)
