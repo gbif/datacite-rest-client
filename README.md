@@ -33,15 +33,15 @@ See [pom.xml](pom.xml) for more details.
  
 ## DOI prefixes and usage
 
-| Environment | Prefix   | Usage                                           |
-|-------------|----------|-------------------------------------------------|
-| Production  | 10.15468 | Datasets and downloads (automatically assigned) |
-| Production  | 10.15469 | Previously used for testing                     |
-| Production  | 10.26161 | Tensorflow models (manually assigned)           |
-| Production  | 10.35000 | Custom data exports (manually assigned)         |
-| Production  | 10.35035 | Documentation (manually assigned)               |
-| Test        | 10.21373 | Datasets and downloads (automatically assigned) |
-| Test        | 10.15468 | Previously used for testing                     |
-| Test        | 10.21374 | Misc. testing                                   |
+| Environment | Prefix   | Usage                                           | Exceptions |
+|-------------|----------|-------------------------------------------------|------------|
+| Production  | 10.15468 | Datasets and downloads (automatically assigned) | some manually assigned ([see API](https://api.datacite.org/dois?prefix=10.15468&resource-type-id=text)) |
+| Production  | 10.15469 | Previously used for testing                     |            |
+| Production  | 10.26161 | Tensorflow models (manually assigned)           |            |
+| Production  | 10.35000 | Custom data exports (manually assigned)         |            |
+| Production  | 10.35035 | Documentation (manually assigned)               |            |
+| Test        | 10.21373 | Datasets and downloads (automatically assigned) |            |
+| Test        | 10.15468 | Previously used for testing                     |            |
+| Test        | 10.21374 | Misc. testing                                   |            |
 
 
