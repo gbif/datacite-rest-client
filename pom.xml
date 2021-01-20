@@ -68,7 +68,7 @@
         <commons.io.version>2.6</commons.io.version>
 
         <!-- JSON -->
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.12.1</jackson.version>
         <jsonapi.version>0.9</jsonapi.version>
         <jsonschema2pojo.version>1.0.0</jsonschema2pojo.version>
 
