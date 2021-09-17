@@ -68,6 +68,7 @@ public class DataCiteRetrofitClientCommonSteps {
 
     @Then("Response message should be {string}")
     public void checkResponseMessage(String message) {
+        System.out.println(response);
         assertEquals(message, response.message());
     }
 
