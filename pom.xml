@@ -15,7 +15,7 @@
 
     <name>DataCite Rest Client Parent</name>
     <description>DataCite Rest Client Parent</description>
-    <url>http://github.com/gbif/datacite-rest-client</url>
+    <url>https://github.com/gbif/datacite-rest-client</url>
 
     <scm>
         <connection>scm:git:git@github.com:gbif/datacite-rest-client.git</connection>
@@ -27,18 +27,18 @@
     <distributionManagement>
         <site>
             <id>gh-pages</id>
-            <url>http://gbif.github.io/datacite-rest-client/</url>
+            <url>https://gbif.github.io/datacite-rest-client/</url>
         </site>
     </distributionManagement>
 
     <repositories>
         <repository>
             <id>gbif-all</id>
-            <url>http://repository.gbif.org/content/groups/gbif</url>
+            <url>https://repository.gbif.org/content/groups/gbif</url>
         </repository>
         <repository>
             <id>cloudera-release</id>
-            <url>http://repository.cloudera.com/artifactory/cloudera-repos/</url>
+            <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
         </repository>
     </repositories>
 
@@ -72,7 +72,7 @@
         <jsonapi.version>0.9</jsonapi.version>
         <jsonschema2pojo.version>1.0.0</jsonschema2pojo.version>
 
-        <!-- Rest/HTPP-->
+        <!-- Rest/HTTP-->
         <retrofit.version>2.5.0</retrofit.version>
         <okhttp.version>3.11.0</okhttp.version>
         <okio.version>2.0.0</okio.version>
