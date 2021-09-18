@@ -1,19 +1,17 @@
 package org.gbif.datacite.jsonapi.annotator;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.jasminb.jsonapi.annotations.Id;
-import com.github.jasminb.jsonapi.annotations.Type;
-import com.sun.codemodel.JAnnotationUse;
+import com.sun.codemodel.JCodeModel;
 import com.sun.codemodel.JDefinedClass;
 import com.sun.codemodel.JFieldVar;
+import com.sun.codemodel.JMod;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests {@link JsonApiAnnotator} class.
@@ -23,40 +21,42 @@ import static org.mockito.Mockito.when;
 public class JsonApiAnnotatorTest {
 
     @Mock
-    JFieldVar fieldMock;
-    @Mock
-    JDefinedClass classMock;
-    @Mock
-    JAnnotationUse annotationUseMock;
-    @Mock
     JsonNode propertyNodeMock;
 
     // Class with property 'doi' should be annotated with the annotation 'Type'
     @Test
-    public void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() {
+    public void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() throws Exception {
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
-        when(classMock.annotate(Type.class)).thenReturn(annotationUseMock);
-        when(annotationUseMock.param("value", "dois")).thenReturn(annotationUseMock);
+        JCodeModel cm = new JCodeModel();
+        JDefinedClass targetClass = cm._class("org.gbif.datacite.jsonapi.annotator.ApiAnnotatorTargetClass");
+        JFieldVar doiField = targetClass.field(JMod.PRIVATE, String.class, "doi");
+
+        assertTrue("Newly generated class should not have any annotations", targetClass.annotations().isEmpty());
 
         // when
-        jsonApiAnnotator.propertyField(fieldMock, classMock, "doi", propertyNodeMock);
+        jsonApiAnnotator.propertyField(doiField, targetClass, "doi", propertyNodeMock);
 
         // then
-        verify(classMock, times(1)).annotate(Type.class);
+        assertEquals("After method call should have 1 annotation", 1, targetClass.annotations().size());
     }
 
     // Property 'id' should be annotated with the annotation 'Id'
     @Test
-    public void propertyIdShouldBeAnnotatedWithAnnotationId() {
+    public void propertyIdShouldBeAnnotatedWithAnnotationId() throws Exception {
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
-        when(fieldMock.annotate(Id.class)).thenReturn(annotationUseMock);
+        JCodeModel cm = new JCodeModel();
+        JDefinedClass targetClass = cm._class("org.gbif.datacite.jsonapi.annotator.ApiAnnotatorTargetClass");
+        JFieldVar idField = targetClass.field(JMod.PRIVATE, String.class, "id");
+
+        assertTrue("Newly generated class should not have any annotations", targetClass.annotations().isEmpty());
+        assertTrue("Newly generated field should not have any annotations", idField.annotations().isEmpty());
 
         // when
-        jsonApiAnnotator.propertyField(fieldMock, classMock, "id", propertyNodeMock);
+        jsonApiAnnotator.propertyField(idField, targetClass, "id", propertyNodeMock);
 
         // then
-        verify(fieldMock, times(1)).annotate(Id.class);
+        assertEquals("After method call should have 1 annotation", 1, idField.annotations().size());
     }
 }
