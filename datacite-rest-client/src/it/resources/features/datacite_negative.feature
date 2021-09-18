@@ -12,7 +12,7 @@ Feature: DataCite API negative cases
     Given Misconfigured rest client: wrong "<parameter>"
     And Model
     When Perform a request with a misconfigured client to DataCite's POST DOI
-    Then Response message should be "<message>"
+    Then Response message can be "<message>" or empty
     And Response code should be <code>
 
     Scenarios:
@@ -25,7 +25,7 @@ Feature: DataCite API negative cases
   Scenario Template: Creation a DOI with wrong parameter <field>: <description>
     Given Model with wrong "<field>"
     When Perform a request to DataCite's POST DOI
-    Then Response message should be "<message>"
+    Then Response message can be "<message>" or empty
     And Response code should be <code>
 
     Scenarios:
@@ -38,12 +38,12 @@ Feature: DataCite API negative cases
   Scenario: Findable DOI can't be deleted
     Given An existing DOI with state "findable"
     When Perform a request to DataCite's DELETE DOI
-    Then Response message (delete) should be "Method Not Allowed"
+    Then Response message (delete) can be "Method Not Allowed" or empty
     And Response code (delete) should be 405
 
   Scenario: Try create a DOI which already exists should throw an exception
     Given An existing DOI with state "findable"
     And Model with this DOI
     When Perform a request to DataCite's POST DOI
-    Then Response message should be "Unprocessable Entity"
+    Then Response message can be "Unprocessable Entity" or empty
     And Response code should be 422

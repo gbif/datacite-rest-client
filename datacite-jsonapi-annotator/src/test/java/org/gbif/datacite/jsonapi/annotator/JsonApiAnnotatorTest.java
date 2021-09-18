@@ -24,20 +24,16 @@ public class JsonApiAnnotatorTest {
 
     @Mock
     JFieldVar fieldMock;
-
     @Mock
     JDefinedClass classMock;
-
     @Mock
     JAnnotationUse annotationUseMock;
-
     @Mock
     JsonNode propertyNodeMock;
 
     // Class with property 'doi' should be annotated with the annotation 'Type'
     @Test
     public void classWithPropertyDoiShouldBeAnnotatedWithAnnotationType() {
-
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
         when(classMock.annotate(Type.class)).thenReturn(annotationUseMock);
@@ -53,7 +49,6 @@ public class JsonApiAnnotatorTest {
     // Property 'id' should be annotated with the annotation 'Id'
     @Test
     public void propertyIdShouldBeAnnotatedWithAnnotationId() {
-
         // given
         JsonApiAnnotator jsonApiAnnotator = new JsonApiAnnotator();
         when(fieldMock.annotate(Id.class)).thenReturn(annotationUseMock);

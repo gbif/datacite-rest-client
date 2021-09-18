@@ -21,13 +21,13 @@ import static org.mockito.Mockito.when;
 /**
  * Tests {@link SyncCall#syncCallWithResponse(Call)} method.
  */
-    @RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class SyncCallTest {
 
     @Mock
     Call<JSONAPIDocument<Datacite42Schema>> callMock;
-    @Mock
-    Response<JSONAPIDocument<Datacite42Schema>> responseMock;
+
+    Response<JSONAPIDocument<Datacite42Schema>> responseMock = Response.success(null);
 
     @Test
     public void shouldReturnResponse() throws IOException {

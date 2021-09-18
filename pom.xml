@@ -105,9 +105,8 @@
         <sonar.coverage.exclusions>**/java-generated/**,**/ClientConfiguration.java,**/*Exception.java,**/model/**</sonar.coverage.exclusions>
 
         <!-- Testing -->
-        <junit4.version>4.12</junit4.version>
-        <junit.version>5.4.1</junit.version>
-        <mockito.version>2.26.0</mockito.version>
+        <junit4.version>4.13.2</junit4.version>
+        <mockito.version>3.12.4</mockito.version>
         <cucumber.version>4.8.0</cucumber.version>
 
         <!-- JaCoCo -->
@@ -233,12 +232,6 @@
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>${mockito.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-inline</artifactId>
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>

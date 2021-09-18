@@ -72,14 +72,23 @@ public class DataCiteRetrofitClientCommonSteps {
         assertEquals(message, response.message());
     }
 
+    @Then("Response message can be {string} or empty")
+    public void checkResponseMessageOrEmpty(String message) {
+        if (!response.message().isEmpty()) {
+            assertEquals(message, response.message());
+        }
+    }
+
     @And("Response code should be {int}")
     public void checkResponseCode(int code) {
         assertEquals(code, response.code());
     }
 
-    @Then("Response message \\(delete) should be {string}")
+    @Then("Response message \\(delete) can be {string} or empty")
     public void checkResponseMessageDelete(String message) {
-        assertEquals(message, deleteResponse.message());
+        if (!deleteResponse.message().isEmpty()) {
+            assertEquals(message, deleteResponse.message());
+        }
     }
 
     @And("Response code \\(delete) should be {int}")
