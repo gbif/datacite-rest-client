@@ -25,7 +25,7 @@ The implementation of this library will depend on the following commonly used li
  - [Jackson](https://github.com/FasterXML/jackson) for JSON data handling.
  - [SLF4J](https://www.slf4j.org/) as logging facade.
  - [error-prone](https://github.com/google/error-prone) as static analysis tool.
- - Testing: [JUnit 5](https://junit.org/junit5/), 
+ - Testing: [JUnit 4](https://junit.org/junit4/), 
  [Mockito](https://site.mockito.org/), 
  [Cucumber](https://docs.cucumber.io/).
  
