@@ -7,7 +7,6 @@ Feature: DataCite API negative cases
     Given Rest client
 
   # Now API is not working properly: it returns 404 instead of 401. Scenario must be changed after their fixes.
-  # Another strange detail: if the protocol http instead of https the answer is 200 (instead of 201 or exception)
   Scenario Template: Creation a DOI with wrong credentials should throw an exception
     Given Misconfigured rest client: wrong "<parameter>"
     And Model
@@ -17,7 +16,6 @@ Feature: DataCite API negative cases
 
     Scenarios:
       | parameter                   | message   | code |
-      | api (http instead of https) | OK        | 200  |
       | username                    | Not Found | 404  |
       | password                    | Not Found | 404  |
       | username and password       | Not Found | 404  |

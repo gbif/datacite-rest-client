@@ -46,16 +46,6 @@ public class DataCiteRetrofitSyncClient implements DataCiteClient {
     }
 
     /**
-     * Performs a synchronous call to the DataCite service's get.
-     *
-     * @return a list of dois wrapped by {@link Datacite42Schema}
-     */
-    @Override
-    public Response<JSONAPIDocument<Datacite42Schema>> getDois() {
-        return syncCallWithResponse(dataCiteRetrofitService.get());
-    }
-
-    /**
      * Performs a synchronous call to the DataCite service's create.
      *
      * @param body data

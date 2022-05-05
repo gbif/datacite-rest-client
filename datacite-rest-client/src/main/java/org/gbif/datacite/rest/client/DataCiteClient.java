@@ -12,13 +12,6 @@ import retrofit2.Response;
 public interface DataCiteClient {
 
     /**
-     * Gets a list of dois.
-     *
-     * @return a list of dois in JSON API format wrapped by {@link Response}
-     */
-    Response<JSONAPIDocument<Datacite42Schema>> getDois();
-
-    /**
      * Get a doi.
      *
      * @param doi identifier

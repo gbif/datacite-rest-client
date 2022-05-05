@@ -18,10 +18,6 @@ Feature: DataCite API positive cases
     When Perform a request to DataCite's DELETE DOI
     Then Response code (delete) should be 204
 
-  Scenario: Get a list of DOIs
-    When Perform a request to DataCite's GET DOI
-    Then Response code should be 200
-
   Scenario Template: Create a new <state> DOI by XML metadata
     Given Model with provided XML metadata
     And event type is <event>

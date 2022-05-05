@@ -74,11 +74,6 @@ public class DataCiteRetrofitClientPositiveSteps {
         assertTrue(actualMetadata.contains("<publicationYear>2014</publicationYear>"));
     }
 
-    @When("Perform a request to DataCite's GET DOI")
-    public void performGetDoiList() {
-        response = client.getDois();
-    }
-
     @When("Perform a request to DataCite's POST DOI")
     public void performCreateDoi() {
         JSONAPIDocument<DoiSimplifiedModel> jsonApi = new JSONAPIDocument<>(model);
