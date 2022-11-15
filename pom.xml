@@ -60,7 +60,7 @@
 
         <!-- JSON -->
         <jackson.version>2.13.2</jackson.version>
-        <jackson-databind.version>2.13.2.2</jackson-databind.version>
+        <jackson-databind.version>2.13.4.1</jackson-databind.version>
         <jsonapi.version>0.9</jsonapi.version>
         <jsonschema2pojo.version>1.0.0</jsonschema2pojo.version>
 
