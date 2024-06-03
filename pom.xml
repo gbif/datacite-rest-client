@@ -70,7 +70,7 @@
         <!-- Rest/HTTP-->
         <retrofit.version>2.8.0</retrofit.version>
         <okhttp.version>4.9.1</okhttp.version>
-        <okio.version>2.10.0</okio.version>
+        <okio.version>3.2.0</okio.version>
 
         <!-- Plugins -->
         <jaxb2-maven-plugin.version>2.4</jaxb2-maven-plugin.version>
