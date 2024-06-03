@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.gbif</groupId>
         <artifactId>motherpom</artifactId>
-        <version>54</version>
+        <version>58-SNAPSHOT</version>
     </parent>
 
     <groupId>org.gbif.datacite</groupId>
@@ -44,6 +44,10 @@
     </modules>
 
     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <java.version>11</java.version>
+
         <!-- Common variables -->
         <logging.interceptor.level>NONE</logging.interceptor.level>
         <datacite.doi.prefix>10.21373</datacite.doi.prefix>
@@ -64,9 +68,9 @@
         <jsonschema2pojo.version>1.0.0</jsonschema2pojo.version>
 
         <!-- Rest/HTTP-->
-        <retrofit.version>2.5.0</retrofit.version>
-        <okhttp.version>3.11.0</okhttp.version>
-        <okio.version>2.0.0</okio.version>
+        <retrofit.version>2.8.0</retrofit.version>
+        <okhttp.version>4.9.1</okhttp.version>
+        <okio.version>2.10.0</okio.version>
 
         <!-- Plugins -->
         <jaxb2-maven-plugin.version>2.4</jaxb2-maven-plugin.version>
